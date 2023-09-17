@@ -1,0 +1,47 @@
+Search for ('Enter' for quit): mari
+Maria
+Mariana
+Marisa
+Marina
+Marisol
+Mariam
+Mario
+Marie
+Maribel
+Mariano
+Mariama
+Mariusz
+Marius
+Marisela
+Marion
+Marin
+Marilyn
+Mariluz
+Marilinda
+Marieta
+Marianna
+Mariame
+Mariah
+MariaLuísa
+Mari
+
+Search for ('Enter' for quit): anab
+Anabela
+Anabel
+Anabia
+
+Search for ('Enter' for quit): joa
+Joana
+Joaquim
+Joabe
+Joaquina
+Joaninha
+
+Search for ('Enter' for quit): joã
+João
+
+Search for ('Enter' for quit): zu
+Zuriel
+Zulai
+
+Search for ('Enter' for quit): enter

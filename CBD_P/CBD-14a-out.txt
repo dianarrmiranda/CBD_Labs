@@ -1,0 +1,10 @@
+Search for ('Enter' for quit): susann
+susanna
+susannah
+susanne
+
+Search for ('Enter' for quit): zora
+zorah
+zorana
+
+Search for ('Enter' for quit): 

@@ -1,4 +1,4 @@
-package cbd.lab01;
+package cbd.lab01.EX13;
 
 import redis.clients.jedis.Jedis;
 
