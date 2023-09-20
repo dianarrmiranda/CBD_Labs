@@ -2,7 +2,10 @@ package cbd.lab01.EX15;
 import redis.clients.jedis.Jedis;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.DoubleSummaryStatistics;
 import java.util.Scanner;
 
@@ -21,30 +24,38 @@ public class AtendimentoA {
 
         Scanner sc = new Scanner(System.in);
 
+        PrintWriter out = new PrintWriter(new FileWriter("CBD-15a-out.txt"));
+
         while(true){
-            System.out.print("Do you want make a request? (Y/N) ");
-            String request = sc.next().toLowerCase();
+            System.out.print("Username ('Enter' for quit): ");
+            out.print("Username ('Enter' for quit): ");
+            String username = sc.next();
+            out.println(username);
             sc.nextLine();
-            if(request.equals("n")){
+            if(username.toLowerCase().equals("enter")){
                 break;
-            }else if (request.equals("y")) {
-                System.out.print("Username: ");
-                String username = sc.next();
-                sc.nextLine();
+            }else{
                 System.out.print("Products (If you want to include multiple products, please list them separated by ','.): ");
-                String[] products = sc.nextLine().replaceAll("\\s", "").split(",");
+                out.print("Products (If you want to include multiple products, please list them separated by ','.): ");
+                String prods = sc.nextLine();
+                out.println(prods);
+                String[] products = prods.replaceAll("\\s", "").split(",");
 
                 if (jedis.sismember(CLIENTS_PRODUCTS, username)) {
                     if(jedis.llen(CLIENTS_PRODUCTS + ":" + username) == limit || jedis.llen(CLIENTS_PRODUCTS + ":" + username) + products.length > limit) {
-                        System.err.println("ERRO: Excedeu o limite máximo de produtos definido para a janela temporal");
+                        System.err.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
+                        out.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
                     }else {
                         jedis.lpush(CLIENTS_PRODUCTS + ":" + username, products);
                     }
                 } else {
                     jedis.sadd(CLIENTS_PRODUCTS, username);
-                    if(jedis.llen(CLIENTS_PRODUCTS + ":" + username) + products.length < limit){
+                    if(jedis.llen(CLIENTS_PRODUCTS + ":" + username) + products.length <= limit){
                         jedis.lpush(CLIENTS_PRODUCTS + ":" + username, products);
                         jedis.expire(CLIENTS_PRODUCTS + ":" + username, 60);
+                    }else {
+                        System.err.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
+                        out.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
                     }
                 }
 
@@ -54,14 +65,19 @@ public class AtendimentoA {
                     }
                 }
 
-                System.out.println("Cliente - Produtos solicitados: ");
+                System.out.println("Clients - Products: ");
+                out.println("Clients - Products: ");
                 for(String user : jedis.smembers(CLIENTS_PRODUCTS)){
                     System.out.println(user + " - " + jedis.lrange(CLIENTS_PRODUCTS + ":" + user, 0, -1));
+                    out.println(user + " - " + jedis.lrange(CLIENTS_PRODUCTS + ":" + user, 0, -1));
                 }
                 System.out.println();
+                out.println();
+
             }
         }
 
+        out.close();
         sc.close();
         jedis.close();
     }

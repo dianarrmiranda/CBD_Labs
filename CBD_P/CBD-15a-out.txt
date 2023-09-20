@@ -1,0 +1,24 @@
+Username ('Enter' for quit): diana
+Products (If you want to include multiple products, please list them separated by ','.): prod1, prod2, prod3
+Clients - Products: 
+diana - [prod3, prod2, prod1]
+
+Username ('Enter' for quit): jose
+Products (If you want to include multiple products, please list them separated by ','.): prod2
+Clients - Products: 
+jose - [prod2]
+diana - [prod3, prod2, prod1]
+
+Username ('Enter' for quit): diana
+Products (If you want to include multiple products, please list them separated by ','.): prod4
+ERROR: The maximum product limit set for the time window has been exceeded."
+Clients - Products: 
+jose - [prod2]
+diana - [prod3, prod2, prod1]
+
+Username ('Enter' for quit): jose
+Products (If you want to include multiple products, please list them separated by ','.): prod1
+Clients - Products: 
+jose - [prod1]
+
+Username ('Enter' for quit): enter
