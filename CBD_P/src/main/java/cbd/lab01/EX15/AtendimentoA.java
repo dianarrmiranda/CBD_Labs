@@ -50,7 +50,7 @@ public class AtendimentoA {
                     }
                 } else {
                     jedis.sadd(CLIENTS_PRODUCTS, username);
-                    if(jedis.llen(CLIENTS_PRODUCTS + ":" + username) + products.length <= limit){
+                    if(products.length <= limit){
                         jedis.lpush(CLIENTS_PRODUCTS + ":" + username, products);
                         jedis.expire(CLIENTS_PRODUCTS + ":" + username, 60);
                     }else {

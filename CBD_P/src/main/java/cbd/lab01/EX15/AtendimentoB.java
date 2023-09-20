@@ -1,11 +1,14 @@
 package cbd.lab01.EX15;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.resps.Tuple;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class AtendimentoB {
     public static String CLIENTS_PRODUCTS_QUANT = "clientsProdsQuant";
@@ -33,27 +36,40 @@ public class AtendimentoB {
             if(username.toLowerCase().equals("enter")){
                 break;
             }else{
-                System.out.print("Products (Insert this way: product - quantity. If you want to include multiple products, please list them separated by ','.): ");
-                out.print("Products (Insert this way: product - quantity. If you want to include multiple products, please list them separated by ','.): ");
-                String prods = sc.nextLine();
-                out.println(prods);
-                String[] products = prods.replaceAll("\\s", "").split(",");
+                System.out.print("Products (Insert product - quantity): ");
+                out.print("Products (Insert product - quantity): ");
+                String request = sc.nextLine().replaceAll("\\s", "");
+                out.println(request);
+                String product = request.split("-")[0];
+                int quantity = Integer.parseInt(request.split("-")[1]);
 
                 if (jedis.sismember(CLIENTS_PRODUCTS_QUANT, username)) {
-                    if(jedis.llen(CLIENTS_PRODUCTS_QUANT + ":" + username) == limit || jedis.llen(CLIENTS_PRODUCTS_QUANT + ":" + username) + products.length > limit) {
-                        System.err.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
-                        out.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
-                    }else {
-                        jedis.lpush(CLIENTS_PRODUCTS_QUANT + ":" + username, products);
+                    List<Tuple> products = jedis.zrangeWithScores(CLIENTS_PRODUCTS_QUANT + ":" + username, 0, -1); //[ [produto, quantidade] ]
+                    int total = 0;
+                    for(int i = 0; i < products.size(); i++){
+                        total += (int) products.get(i).getScore();
                     }
+                    total += quantity;
+                    if(total > limit) {
+                        System.err.println("ERROR: The maximum product limit set for the time window has been exceeded.");
+                        out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
+                    }else {
+                        if(jedis.zscore(CLIENTS_PRODUCTS_QUANT + ":" + username, product) != null){
+                            double q = jedis.zscore(CLIENTS_PRODUCTS_QUANT + ":" + username, product);
+                            jedis.zadd(CLIENTS_PRODUCTS_QUANT + ":" + username, quantity + (int) q, product);
+                        }else{
+                            jedis.zadd(CLIENTS_PRODUCTS_QUANT + ":" + username, quantity, product);
+                        }
+                    }
+
                 } else {
                     jedis.sadd(CLIENTS_PRODUCTS_QUANT, username);
-                    if(jedis.llen(CLIENTS_PRODUCTS_QUANT + ":" + username) + products.length <= limit){
-                        jedis.lpush(CLIENTS_PRODUCTS_QUANT + ":" + username, products);
+                    if(quantity <= limit){
+                        jedis.zadd(CLIENTS_PRODUCTS_QUANT + ":" + username, quantity, product);
                         jedis.expire(CLIENTS_PRODUCTS_QUANT + ":" + username, 60);
                     }else {
-                        System.err.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
-                        out.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
+                        System.err.println("ERROR: The maximum product limit set for the time window has been exceeded.");
+                        out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
                     }
                 }
 
@@ -63,15 +79,15 @@ public class AtendimentoB {
                     }
                 }
 
+                //Print para ver que valores é que estão guardados. Controlar os clientes e produtos
                 System.out.println("Clients - Products: ");
                 out.println("Clients - Products: ");
                 for(String user : jedis.smembers(CLIENTS_PRODUCTS_QUANT)){
-                    System.out.println(user + " - " + jedis.lrange(CLIENTS_PRODUCTS_QUANT + ":" + user, 0, -1));
-                    out.println(user + " - " + jedis.lrange(CLIENTS_PRODUCTS_QUANT + ":" + user, 0, -1));
+                    System.out.println(user + " - " + jedis.zrangeWithScores(CLIENTS_PRODUCTS_QUANT + ":" + user, 0, -1));
+                    out.println(user + " - " + jedis.zrangeWithScores(CLIENTS_PRODUCTS_QUANT + ":" + user, 0, -1));
                 }
                 System.out.println();
                 out.println();
-
             }
         }
 

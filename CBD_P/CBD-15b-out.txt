@@ -1,0 +1,52 @@
+Username ('Enter' for quit): diana
+Products (Insert product - quantity): prod-1
+Clients - Products: 
+diana - [[prod,1.0]]
+
+Username ('Enter' for quit): diana
+Products (Insert product - quantity): prod-3
+Clients - Products: 
+diana - [[prod,4.0]]
+
+Username ('Enter' for quit): diana
+Products (Insert product - quantity): prod-30
+ERROR: The maximum product limit set for the time window has been exceeded.
+Clients - Products: 
+diana - [[prod,4.0]]
+
+Username ('Enter' for quit): diana
+Products (Insert product - quantity): prod2-20
+Clients - Products: 
+diana - [[prod,4.0], [prod2,20.0]]
+
+Username ('Enter' for quit): jose
+Products (Insert product - quantity): prod1-3
+Clients - Products: 
+jose - [[prod1,3.0]]
+
+Username ('Enter' for quit): pedro
+Products (Insert product - quantity): prod-29
+Clients - Products: 
+pedro - [[prod,29.0]]
+jose - [[prod1,3.0]]
+
+Username ('Enter' for quit): jose
+Products (Insert product - quantity): prod2-25
+Clients - Products: 
+pedro - [[prod,29.0]]
+jose - [[prod1,3.0], [prod2,25.0]]
+
+Username ('Enter' for quit): pedro
+Products (Insert product - quantity): prod1-3
+ERROR: The maximum product limit set for the time window has been exceeded.
+Clients - Products: 
+pedro - [[prod,29.0]]
+jose - [[prod1,3.0], [prod2,25.0]]
+
+Username ('Enter' for quit): pedro
+Products (Insert product - quantity): prod1-1
+Clients - Products: 
+pedro - [[prod1,1.0], [prod,29.0]]
+jose - [[prod1,3.0], [prod2,25.0]]
+
+Username ('Enter' for quit): enter
