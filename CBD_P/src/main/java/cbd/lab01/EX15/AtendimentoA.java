@@ -1,22 +1,24 @@
 package cbd.lab01.EX15;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.resps.Tuple;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Scanner;
 
 public class AtendimentoA {
-    public static String CLIENTS_PRODUCTS = "clientsProds";
+    public static String CLIENTS_KEY = "clientsKey";
     public static void main(String[] args) throws IOException {
 
-        final int timeslot = 60;
+        final int timeslot = 10;
         final int limit = 3;
 
         Jedis jedis = new Jedis();
 
-        if(jedis.exists(CLIENTS_PRODUCTS)){
-            jedis.del(CLIENTS_PRODUCTS);
+        if(jedis.exists(CLIENTS_KEY)){
+            jedis.del(CLIENTS_KEY);
         }
 
         Scanner sc = new Scanner(System.in);
@@ -26,54 +28,44 @@ public class AtendimentoA {
         while(true){
             System.out.print("Username ('Enter' for quit): ");
             out.print("Username ('Enter' for quit): ");
-            String username = sc.next();
+            String username = sc.nextLine().replaceAll("\\s", "");
             out.println(username);
-            sc.nextLine();
-            if(username.toLowerCase().equals("enter")){
+
+            if(username.isEmpty()){
                 break;
             }else{
-                System.out.print("Products (If you want to include multiple products, please list them separated by ','.): ");
-                out.print("Products (If you want to include multiple products, please list them separated by ','.): ");
-                String prods = sc.nextLine();
-                out.println(prods);
-                String[] products = prods.replaceAll("\\s", "").split(",");
+                System.out.print("Product: ");
+                out.print("Product: ");
+                String product = sc.nextLine();
+                out.println(product);
+                double timestamp = System.currentTimeMillis() / 1000.0;
+                List<Tuple> prods = jedis.zrevrangeWithScores(CLIENTS_KEY + ":" + username, 0, -1);
 
-                if (jedis.sismember(CLIENTS_PRODUCTS, username)) {
-                    if(jedis.llen(CLIENTS_PRODUCTS + ":" + username) == limit || jedis.llen(CLIENTS_PRODUCTS + ":" + username) + products.length > limit) {
-                        System.err.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
-                        out.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
-                    }else {
-                        jedis.lpush(CLIENTS_PRODUCTS + ":" + username, products);
-                    }
-                } else {
-                    jedis.sadd(CLIENTS_PRODUCTS, username);
-                    if(products.length <= limit){
-                        jedis.lpush(CLIENTS_PRODUCTS + ":" + username, products);
-                        jedis.expire(CLIENTS_PRODUCTS + ":" + username, 60);
-                    }else {
-                        System.err.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
-                        out.println("ERROR: The maximum product limit set for the time window has been exceeded.\"");
+                for (String value : jedis.zrange(CLIENTS_KEY + ":" + username, 0, -1)) {
+                    if (timestamp - Double.parseDouble(value) > timeslot) {
+                        jedis.zrem(CLIENTS_KEY + ":" + username, value);
                     }
                 }
 
-                for(String user : jedis.smembers(CLIENTS_PRODUCTS)){
-                    if(jedis.ttl(CLIENTS_PRODUCTS + ":" + user) == -2){ //Retorna o tempo que a chave ainda tem, se retornar -1 é porque a chave não tem um expire definido, se retornar -2 é pq o tempo de expire já passou
-                        jedis.srem(CLIENTS_PRODUCTS, user);
+                if(jedis.exists(CLIENTS_KEY + ":" + username)){
+                    if(prods.size() + 1 <= limit){
+                        jedis.zadd(CLIENTS_KEY + ":" + username, prods.get(0).getScore() + 1, String.valueOf(timestamp));
+                    }else if (timestamp - Double.parseDouble(prods.get(prods.size()-1).getElement()) < timeslot)
+                        System.out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
+                    else {
+                        jedis.zadd(CLIENTS_KEY + ":" + username, prods.get(0).getScore() + 1, String.valueOf(timestamp));
                     }
+                }else {
+                    jedis.zadd(CLIENTS_KEY + ":" + username, 1, String.valueOf(timestamp));
                 }
 
-                System.out.println("Clients - Products: ");
-                out.println("Clients - Products: ");
-                for(String user : jedis.smembers(CLIENTS_PRODUCTS)){
-                    System.out.println(user + " - " + jedis.lrange(CLIENTS_PRODUCTS + ":" + user, 0, -1));
-                    out.println(user + " - " + jedis.lrange(CLIENTS_PRODUCTS + ":" + user, 0, -1));
-                }
                 System.out.println();
                 out.println();
 
             }
         }
 
+        System.out.println(jedis.zrevrangeWithScores(CLIENTS_KEY + ":" + "diana", 0, -1));
         out.close();
         sc.close();
         jedis.close();

@@ -1,0 +1,16 @@
+Username ('Enter' for quit): diana
+Product: a
+
+Username ('Enter' for quit): diana
+Product: a
+
+Username ('Enter' for quit): diana
+Product: a
+
+Username ('Enter' for quit): diana
+Product: a
+
+Username ('Enter' for quit): diana
+Product: a
+
+Username ('Enter' for quit): 
