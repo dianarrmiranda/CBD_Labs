@@ -22,7 +22,7 @@ public class AutoCompleteA {
             Scanner sc = new Scanner(file);
 
             while (sc.hasNextLine()) {
-                jedis.rpush(NAMES_KEY, sc.nextLine());
+                jedis.zadd(NAMES_KEY, 0, sc.nextLine());
             }
             sc.close();
         } catch (IOException e) {
@@ -38,17 +38,16 @@ public class AutoCompleteA {
         while (true) {
             System.out.print("Search for ('Enter' for quit): ");
             out.print("Search for ('Enter' for quit): ");
-            search = sc.next();
-            if(search.equals("Enter") || search.equals("enter")){
+            search = sc.nextLine();
+            if(search.isEmpty()){
                 break;
             }
 
-            for(String s : jedis.lrange(NAMES_KEY, 0, -1)){
-                if(s.toLowerCase().startsWith(search.toLowerCase())){
-                    System.out.println(s);
-                    out.println(s);
-                }
+            for(String s : jedis.zrangeByLex(NAMES_KEY, "[" + search , "(" + search + "~" )){
+                System.out.println(s);
+                out.println(s);
             }
+
             System.out.println();
             out.println();
 

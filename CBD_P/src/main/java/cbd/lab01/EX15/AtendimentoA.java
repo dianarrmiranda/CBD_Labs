@@ -1,12 +1,9 @@
 package cbd.lab01.EX15;
 import redis.clients.jedis.Jedis;
 
-import javax.swing.*;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.DoubleSummaryStatistics;
 import java.util.Scanner;
 
 public class AtendimentoA {
