@@ -17,10 +17,6 @@ public class AtendimentoA {
 
         Jedis jedis = new Jedis();
 
-        if(jedis.exists(CLIENTS_KEY)){
-            jedis.del(CLIENTS_KEY);
-        }
-
         Scanner sc = new Scanner(System.in);
 
         PrintWriter out = new PrintWriter(new FileWriter("CBD-15a-out.txt"));
@@ -41,22 +37,32 @@ public class AtendimentoA {
                 double timestamp = System.currentTimeMillis() / 1000.0;
                 List<Tuple> prods = jedis.zrevrangeWithScores(CLIENTS_KEY + ":" + username, 0, -1);
 
-                for (String value : jedis.zrange(CLIENTS_KEY + ":" + username, 0, -1)) {
-                    if (timestamp - Double.parseDouble(value) > timeslot) {
-                        jedis.zrem(CLIENTS_KEY + ":" + username, value);
+                for(String user : jedis.smembers(CLIENTS_KEY)){
+                    for (String value : jedis.zrange(CLIENTS_KEY + ":" + user, 0, -1)) {
+                        if (timestamp - Double.parseDouble(value) > timeslot) {
+                            jedis.zrem(CLIENTS_KEY + ":" + user, value);
+                        }
                     }
                 }
 
                 if(jedis.exists(CLIENTS_KEY + ":" + username)){
                     if(prods.size() + 1 <= limit){
                         jedis.zadd(CLIENTS_KEY + ":" + username, prods.get(0).getScore() + 1, String.valueOf(timestamp));
-                    }else if (timestamp - Double.parseDouble(prods.get(prods.size()-1).getElement()) < timeslot)
+                    }else if (timestamp - Double.parseDouble(prods.get(prods.size()-1).getElement()) < timeslot){
                         System.out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
+                        out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
+                    }
                     else {
                         jedis.zadd(CLIENTS_KEY + ":" + username, prods.get(0).getScore() + 1, String.valueOf(timestamp));
                     }
                 }else {
                     jedis.zadd(CLIENTS_KEY + ":" + username, 1, String.valueOf(timestamp));
+                    jedis.sadd(CLIENTS_KEY, username);
+                }
+
+                for(String user : jedis.smembers(CLIENTS_KEY)){
+                    System.out.println(user + " - " + jedis.zrevrangeWithScores(CLIENTS_KEY + ":" + user, 0, -1));
+                    out.println(user + " - " + jedis.zrevrangeWithScores(CLIENTS_KEY + ":" + user, 0, -1));
                 }
 
                 System.out.println();
@@ -64,8 +70,6 @@ public class AtendimentoA {
 
             }
         }
-
-        System.out.println(jedis.zrevrangeWithScores(CLIENTS_KEY + ":" + "diana", 0, -1));
         out.close();
         sc.close();
         jedis.close();
