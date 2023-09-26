@@ -1,52 +1,30 @@
 Username ('Enter' for quit): diana
-Products (Insert product - quantity): prod-1
-Clients - Products: 
-diana - [[prod,1.0]]
-
-Username ('Enter' for quit): diana
-Products (Insert product - quantity): prod-3
-Clients - Products: 
-diana - [[prod,4.0]]
-
-Username ('Enter' for quit): diana
-Products (Insert product - quantity): prod-30
+Quantity: 40
 ERROR: The maximum product limit set for the time window has been exceeded.
-Clients - Products: 
-diana - [[prod,4.0]]
+diana - []
 
 Username ('Enter' for quit): diana
-Products (Insert product - quantity): prod2-20
-Clients - Products: 
-diana - [[prod,4.0], [prod2,20.0]]
+Quantity: 30
+diana - [[1.695740133163E9,30.0]]
+
+Username ('Enter' for quit): diana
+Quantity: 5
+ERROR: The maximum product limit set for the time window has been exceeded.
+diana - [[1.695740133163E9,30.0]]
 
 Username ('Enter' for quit): jose
-Products (Insert product - quantity): prod1-3
-Clients - Products: 
-jose - [[prod1,3.0]]
+Quantity: 3
+jose - [[1.695740144988E9,3.0]]
+diana - []
 
-Username ('Enter' for quit): pedro
-Products (Insert product - quantity): prod-29
-Clients - Products: 
-pedro - [[prod,29.0]]
-jose - [[prod1,3.0]]
+Username ('Enter' for quit): diana
+Quantity: 10
+jose - [[1.695740144988E9,3.0]]
+diana - [[1.695740152544E9,10.0]]
 
-Username ('Enter' for quit): jose
-Products (Insert product - quantity): prod2-25
-Clients - Products: 
-pedro - [[prod,29.0]]
-jose - [[prod1,3.0], [prod2,25.0]]
+Username ('Enter' for quit): diana
+Quantity: 10
+jose - []
+diana - [[1.695740156015E9,10.0], [1.695740152544E9,10.0]]
 
-Username ('Enter' for quit): pedro
-Products (Insert product - quantity): prod1-3
-ERROR: The maximum product limit set for the time window has been exceeded.
-Clients - Products: 
-pedro - [[prod,29.0]]
-jose - [[prod1,3.0], [prod2,25.0]]
-
-Username ('Enter' for quit): pedro
-Products (Insert product - quantity): prod1-1
-Clients - Products: 
-pedro - [[prod1,1.0], [prod,29.0]]
-jose - [[prod1,3.0], [prod2,25.0]]
-
-Username ('Enter' for quit): enter
+Username ('Enter' for quit): 

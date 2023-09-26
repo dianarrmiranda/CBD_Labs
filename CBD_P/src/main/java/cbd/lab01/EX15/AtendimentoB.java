@@ -14,14 +14,10 @@ public class AtendimentoB {
     public static String CLIENTS_PRODUCTS_QUANT = "clientsProdsQuant";
     public static void main(String[] args) throws IOException {
 
-        final int timeslot = 60;
+        final int timeslot = 10;
         final int limit = 30;
 
         Jedis jedis = new Jedis();
-
-        if(jedis.exists(CLIENTS_PRODUCTS_QUANT)){
-            jedis.del(CLIENTS_PRODUCTS_QUANT);
-        }
 
         Scanner sc = new Scanner(System.in);
 
@@ -30,61 +26,63 @@ public class AtendimentoB {
         while(true){
             System.out.print("Username ('Enter' for quit): ");
             out.print("Username ('Enter' for quit): ");
-            String username = sc.next();
+            String username = sc.nextLine().replaceAll("\\s", "");
             out.println(username);
-            sc.nextLine();
-            if(username.toLowerCase().equals("enter")){
+
+            if(username.isEmpty()){
                 break;
             }else{
-                System.out.print("Products (Insert product - quantity): ");
-                out.print("Products (Insert product - quantity): ");
+                System.out.print("Products (Insert 'product - quantity'): ");
+                out.print("Quantity: ");
                 String request = sc.nextLine().replaceAll("\\s", "");
                 out.println(request);
-                String product = request.split("-")[0];
-                int quantity = Integer.parseInt(request.split("-")[1]);
 
-                if (jedis.sismember(CLIENTS_PRODUCTS_QUANT, username)) {
-                    List<Tuple> products = jedis.zrangeWithScores(CLIENTS_PRODUCTS_QUANT + ":" + username, 0, -1); //[ [produto, quantidade] ]
-                    int total = 0;
-                    for(int i = 0; i < products.size(); i++){
-                        total += (int) products.get(i).getScore();
-                    }
-                    total += quantity;
-                    if(total > limit) {
-                        System.err.println("ERROR: The maximum product limit set for the time window has been exceeded.");
-                        out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
-                    }else {
-                        if(jedis.zscore(CLIENTS_PRODUCTS_QUANT + ":" + username, product) != null){
-                            double q = jedis.zscore(CLIENTS_PRODUCTS_QUANT + ":" + username, product);
-                            jedis.zadd(CLIENTS_PRODUCTS_QUANT + ":" + username, quantity + (int) q, product);
-                        }else{
-                            jedis.zadd(CLIENTS_PRODUCTS_QUANT + ":" + username, quantity, product);
+                int quantity = Integer.parseInt(request);
+
+                double timestamp = System.currentTimeMillis() / 1000.0;
+                List<Tuple> prods = jedis.zrevrangeWithScores(CLIENTS_PRODUCTS_QUANT + ":" + username, 0, -1);
+
+                for(String user : jedis.smembers(CLIENTS_PRODUCTS_QUANT)){
+                    for (String value : jedis.zrange(CLIENTS_PRODUCTS_QUANT + ":" + user, 0, -1)) {
+                        if (timestamp - Double.parseDouble(value) > timeslot) {
+                            jedis.zrem(CLIENTS_PRODUCTS_QUANT + ":" + user, value);
                         }
+                    }
+                }
+
+                if(jedis.exists(CLIENTS_PRODUCTS_QUANT + ":" + username)){
+                    List<Tuple> products = jedis.zrangeWithScores(CLIENTS_PRODUCTS_QUANT + ":" + username, 0, -1); //[ [produto, quantidade] ]
+                    int quantTotal = 0;
+
+                    for(int i = 0; i < products.size(); i++){
+                        quantTotal += (int) products.get(i).getScore();
+                    }
+
+                    if(quantTotal + quantity <= limit){
+                        jedis.zadd(CLIENTS_PRODUCTS_QUANT + ":" + username, quantity, String.valueOf(timestamp));
+                    }else if (timestamp - Double.parseDouble(prods.get(prods.size()-1).getElement()) < timeslot){
+                        System.out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
+                        out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
+                    }
+                    else {
+                        jedis.zadd(CLIENTS_PRODUCTS_QUANT + ":" + username, quantity, String.valueOf(timestamp));
                     }
 
                 } else {
-                    jedis.sadd(CLIENTS_PRODUCTS_QUANT, username);
                     if(quantity <= limit){
-                        jedis.zadd(CLIENTS_PRODUCTS_QUANT + ":" + username, quantity, product);
-                        jedis.expire(CLIENTS_PRODUCTS_QUANT + ":" + username, 60);
-                    }else {
-                        System.err.println("ERROR: The maximum product limit set for the time window has been exceeded.");
+                        jedis.zadd(CLIENTS_PRODUCTS_QUANT + ":" + username, quantity, String.valueOf(timestamp));
+                        jedis.sadd(CLIENTS_PRODUCTS_QUANT, username);
+                    }else{
+                        System.out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
                         out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
                     }
                 }
 
-                for(String user : jedis.smembers(CLIENTS_PRODUCTS_QUANT)){
-                    if(jedis.ttl(CLIENTS_PRODUCTS_QUANT + ":" + user) == -2){ //Retorna o tempo que a chave ainda tem, se retornar -1 é porque a chave não tem um expire definido, se retornar -2 é pq o tempo de expire já passou
-                        jedis.srem(CLIENTS_PRODUCTS_QUANT, user);
-                    }
-                }
 
                 //Print para ver que valores é que estão guardados. Controlar os clientes e produtos
-                System.out.println("Clients - Products: ");
-                out.println("Clients - Products: ");
                 for(String user : jedis.smembers(CLIENTS_PRODUCTS_QUANT)){
-                    System.out.println(user + " - " + jedis.zrangeWithScores(CLIENTS_PRODUCTS_QUANT + ":" + user, 0, -1));
-                    out.println(user + " - " + jedis.zrangeWithScores(CLIENTS_PRODUCTS_QUANT + ":" + user, 0, -1));
+                    System.out.println(user + " - " + jedis.zrevrangeWithScores(CLIENTS_PRODUCTS_QUANT + ":" + user, 0, -1));
+                    out.println(user + " - " + jedis.zrevrangeWithScores(CLIENTS_PRODUCTS_QUANT + ":" + user, 0, -1));
                 }
                 System.out.println();
                 out.println();
