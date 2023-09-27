@@ -1,30 +1,40 @@
 Username ('Enter' for quit): diana
 Quantity: 40
 ERROR: The maximum product limit set for the time window has been exceeded.
-diana - []
 
 Username ('Enter' for quit): diana
-Quantity: 30
-diana - [[1.695740133163E9,30.0]]
+Quantity: 20
+diana - [[1.695828639552E9,20.0]]
+
+Username ('Enter' for quit): diana
+Quantity: 25
+ERROR: The maximum product limit set for the time window has been exceeded.
+diana - [[1.695828639552E9,20.0]]
+
+Username ('Enter' for quit): jose
+Quantity: 4
+jose - [[1.695828647956E9,4.0]]
+diana - [[1.695828639552E9,20.0]]
+
+Username ('Enter' for quit): jose
+Quantity: 10
+jose - [[1.69582865189E9,10.0], [1.695828647956E9,4.0]]
+diana - [[1.695828639552E9,20.0]]
+
+Username ('Enter' for quit): jose
+Quantity: 50
+ERROR: The maximum product limit set for the time window has been exceeded.
+jose - [[1.69582865189E9,10.0], [1.695828647956E9,4.0]]
+diana - [[1.695828639552E9,20.0]]
 
 Username ('Enter' for quit): diana
 Quantity: 5
-ERROR: The maximum product limit set for the time window has been exceeded.
-diana - [[1.695740133163E9,30.0]]
-
-Username ('Enter' for quit): jose
-Quantity: 3
-jose - [[1.695740144988E9,3.0]]
-diana - []
+jose - [[1.69582865189E9,10.0], [1.695828647956E9,4.0]]
+diana - [[1.695828665197E9,5.0]]
 
 Username ('Enter' for quit): diana
-Quantity: 10
-jose - [[1.695740144988E9,3.0]]
-diana - [[1.695740152544E9,10.0]]
-
-Username ('Enter' for quit): diana
-Quantity: 10
+Quantity: 6
 jose - []
-diana - [[1.695740156015E9,10.0], [1.695740152544E9,10.0]]
+diana - [[1.695828672379E9,6.0], [1.695828665197E9,5.0]]
 
 Username ('Enter' for quit): 

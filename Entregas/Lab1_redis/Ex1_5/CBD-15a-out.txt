@@ -1,43 +1,44 @@
 Username ('Enter' for quit): diana
 Product: 1
-diana - [[1.695738475184E9,1.0]]
+diana - [[1.695827679909E9,1.0]]
 
 Username ('Enter' for quit): diana
 Product: 2
-diana - [[1.695738478483E9,2.0], [1.695738475184E9,1.0]]
+diana - [[1.695827683458E9,2.0], [1.695827679909E9,1.0]]
 
 Username ('Enter' for quit): diana
 Product: 3
-diana - [[1.695738482264E9,3.0], [1.695738478483E9,2.0], [1.695738475184E9,1.0]]
-
-Username ('Enter' for quit): diana
-Product: 4
-diana - [[1.695738485355E9,4.0], [1.695738482264E9,3.0], [1.695738478483E9,2.0]]
-
-Username ('Enter' for quit): diana
-Product: 5
-ERROR: The maximum product limit set for the time window has been exceeded.
-diana - [[1.695738485355E9,4.0], [1.695738482264E9,3.0], [1.695738478483E9,2.0]]
+diana - [[1.695827687761E9,3.0], [1.695827683458E9,2.0], [1.695827679909E9,1.0]]
 
 Username ('Enter' for quit): jose
 Product: 1
-jose - [[1.69573850161E9,1.0]]
-diana - []
+jose - [[1.695827690681E9,1.0]]
+diana - [[1.695827687761E9,3.0], [1.695827683458E9,2.0], [1.695827679909E9,1.0]]
 
 Username ('Enter' for quit): jose
 Product: 2
-jose - [[1.695738509341E9,2.0], [1.69573850161E9,1.0]]
-diana - []
+jose - [[1.695827694103E9,2.0], [1.695827690681E9,1.0]]
+diana - [[1.695827687761E9,3.0], [1.695827683458E9,2.0], [1.695827679909E9,1.0]]
+
+Username ('Enter' for quit): jose
+Product: 3
+jose - [[1.695827699252E9,3.0], [1.695827694103E9,2.0], [1.695827690681E9,1.0]]
+diana - [[1.695827687761E9,3.0], [1.695827683458E9,2.0], [1.695827679909E9,1.0]]
+
+Username ('Enter' for quit): jose
+Product: 4
+ERROR: The maximum product limit set for the time window has been exceeded.
+jose - [[1.695827699252E9,3.0], [1.695827694103E9,2.0], [1.695827690681E9,1.0]]
+diana - [[1.695827687761E9,3.0], [1.695827683458E9,2.0]]
 
 Username ('Enter' for quit): diana
 Product: 4
-jose - [[1.695738509341E9,2.0]]
-diana - [[1.695738514889E9,1.0]]
+jose - [[1.695827699252E9,3.0], [1.695827694103E9,2.0], [1.695827690681E9,1.0]]
+diana - [[1.695827706176E9,4.0], [1.695827687761E9,3.0]]
 
-Username ('Enter' for quit): sara
-Product: 1
+Username ('Enter' for quit): diana
+Product: 5
 jose - []
-sara - [[1.695738521263E9,1.0]]
-diana - [[1.695738514889E9,1.0]]
+diana - [[1.695827719725E9,5.0], [1.695827706176E9,4.0]]
 
 Username ('Enter' for quit): 

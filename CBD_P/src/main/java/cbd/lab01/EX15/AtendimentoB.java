@@ -14,7 +14,7 @@ public class AtendimentoB {
     public static String CLIENTS_PRODUCTS_QUANT = "clientsProdsQuant";
     public static void main(String[] args) throws IOException {
 
-        final int timeslot = 10;
+        final int timeslot = 20;
         final int limit = 30;
 
         Jedis jedis = new Jedis();
@@ -32,7 +32,7 @@ public class AtendimentoB {
             if(username.isEmpty()){
                 break;
             }else{
-                System.out.print("Products (Insert 'product - quantity'): ");
+                System.out.print("Quantity: ");
                 out.print("Quantity: ");
                 String request = sc.nextLine().replaceAll("\\s", "");
                 out.println(request);
@@ -64,9 +64,6 @@ public class AtendimentoB {
                         System.out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
                         out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
                     }
-                    else {
-                        jedis.zadd(CLIENTS_PRODUCTS_QUANT + ":" + username, quantity, String.valueOf(timestamp));
-                    }
 
                 } else {
                     if(quantity <= limit){
@@ -77,7 +74,6 @@ public class AtendimentoB {
                         out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
                     }
                 }
-
 
                 //Print para ver que valores é que estão guardados. Controlar os clientes e produtos
                 for(String user : jedis.smembers(CLIENTS_PRODUCTS_QUANT)){
