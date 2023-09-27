@@ -1,0 +1,7 @@
+Para este exercício foram utilizadas 3 estruturas de dados/chaves.
+ SISTMESG_USERS_KEY - É um set, onde são guardados todos os users do sistema.
+ Followers:USER - É um conjunto de sets onde a key segue esse padrão, substituindo USER pelo nome do utilizador.
+                  Neste set são guardados os nomes de todos os seguidores do user em questão. E é atualizado sempre que um outro user o segue.
+ messages:USER - É Um conjunto de listas onde a key segue esse padrão, substituindo USER pelo nome do utilizador.
+                 Nesta lista são guardadas todos as mensagens enviadas pelos users que o user em questão segue.
+                 Sempre que alguém envia uma mensagem, é verificado quem são os seus seguidores e a mensagem é registada na lista de cada um.
