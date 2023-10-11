@@ -562,7 +562,7 @@ db.restaurants.aggregate([ { $addFields: { numGrades: {$size: "$grades.grade"}}}
 // ]
 
 // 21. Apresente o número total de avaliações (numGrades) em cada dia da semana
-db.restaurants.aggregate([ { $unwind: "$grades"}, { $addFields: {dayOfWeek: { $dayOfWeek: "$grades.date"}}}, {$group: { _id: "$dayOfWeek", totalGrafes: { $sum: 1}}}, {$sort: {_id: 1}} ])
+db.restaurants.aggregate([ { $unwind: "$grades"}, { $addFields: {dayOfWeek: { $dayOfWeek: "$grades.date"}}}, {$group: { _id: "$dayOfWeek", totalGrades: { $sum: 1}}}, {$sort: {_id: 1}} ])
 // [
 //   { _id: 1, totalGrafes: 7 },
 //   { _id: 2, totalGrafes: 3186 },
@@ -661,22 +661,59 @@ db.restaurants.aggregate([ { $match: { nome: { $regex: /pizza/, $options: "i" }}
 //   { _id: 'Staten Island', nome: "Pizza D'Oro", total: 8 }
 // ]
 
-//29.
+//29. Apresente o nome, localidade, gastronomia e scores onde a localidade é "Manhattan" e o score é maior que 90, mas a gastronomia não é "Italian".
+db.restaurants.find({ "localidade": "Manhattan", "grades.score": { "$gt": 90 }, "gastrononia": { "$ne": "Italian" }}, {_id:0, nome:1, gastronomia:1, localidade:1, "grades.score":1})
+// [
+//   {
+//     localidade: 'Manhattan',
+//     gastronomia: 'American',
+//     grades: [
+//       { score: 11 },
+//       { score: 131 },
+//       { score: 11 },
+//       { score: 25 },
+//       { score: 11 },
+//       { score: 13 }
+//     ],
+//     nome: "Murals On 54/Randolphs'S"
+//   },
+//   {
+//     localidade: 'Manhattan',
+//     gastronomia: 'Indian',
+//     grades: [
+//       { score: 5 },
+//       { score: 8 },
+//       { score: 12 },
+//       { score: 2 },
+//       { score: 9 },
+//       { score: 92 },
+//       { score: 41 }
+//     ],
+//     nome: 'Gandhi'
+//   },
+//   {
+//     localidade: 'Manhattan',
+//     gastronomia: 'Pizza/Italian',
+//     grades: [
+//       { score: 31 },
+//       { score: 98 },
+//       { score: 32 },
+//       { score: 21 },
+//       { score: 11 }
+//     ],
+//     nome: 'Bella Napoli'
+//   }
+// ]
 
-//30. 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 30. Apresente os 5 melhores restaurantes, com base na média de scores, e quantas avaliações teve cada um.
+db.restaurants.aggregate([ { $unwind: "$grades" }, { $group: { _id: "$nome", avgScore: { $avg: "$grades.score" }, numGrades: { $sum: 1 } } }, { $sort: { "avgScore": -1 } }, { $limit: 5 }] )
+// [
+//   { _id: 'West 79Th Street Boat Basin Cafe', avgScore: 36, numGrades: 3 },
+//   { _id: "Murals On 54/Randolphs'S", avgScore: 33.666666666666664, numGrades: 6 },
+//   { _id: 'Live Bait Bar & Restaurant', avgScore: 32.6, numGrades: 5 },
+//   { _id: 'Nanni Restaurant', avgScore: 32.142857142857146, numGrades: 7 },
+//   { _id: 'Trinidad Golden Place', avgScore: 30.8, numGrades: 5 }
+// ]
 
 
 FALAR COM O STOR SOBRE O 8 E 9 QUE SE REFERE Á latitude
