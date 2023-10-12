@@ -3,9 +3,9 @@ Numero de localidades distintas: 6
 Número de restaurantes por localidade:
 -> Queens - 738
 -> Staten Island - 158
--> Algarve - 2
--> Manhattan - 1883
+-> Algarve - 29
 -> Brooklyn - 684
+-> Manhattan - 1883
 -> Bronx - 309
 
 Nome de restaurantes contendo 'Park' no nome:

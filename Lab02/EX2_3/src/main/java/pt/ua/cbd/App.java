@@ -39,6 +39,12 @@ public class App {
             System.out.println();
 
             System.out.println("Alínea b) ");
+            collection.dropIndexes();
+            searchRestaurants(collection, "localidade", "Bronx");
+            System.out.println();
+            searchRestaurants(collection, "gastronomia", "Bakery");
+            System.out.println();
+            searchRestaurantsFilterText(collection, "\"Morris Park Bake Shop\"");
             System.out.println();
             collection.createIndex(Indexes.ascending("localidade"));
             collection.createIndex(Indexes.ascending("gastronomia"));
@@ -184,19 +190,19 @@ public class App {
     public static void searchRestaurants(MongoCollection<Document> collection, String fieldName, String value) {
         Bson filter = Filters.eq(fieldName, value);
         FindIterable<Document> cursor = collection.find(filter);
-        System.out.println(cursor.explain().toJson());
-        for (Document doc : cursor) {
-            System.out.println(doc.toJson());
-        }
+        System.out.println("Execution Time: " + cursor.explain().toBsonDocument().get("executionStats").asDocument().get("executionTimeMillis").asInt32().getValue());
+        //for (Document doc : cursor) {
+        //    System.out.println(doc.toJson());
+        //}
     }
 
     public static void searchRestaurantsFilterText(MongoCollection<Document> collection, String value) {
-        Bson filter = Filters.text(value);
+        Bson filter = Filters.regex("nome", value);
         FindIterable<Document> cursor = collection.find(filter);
-        System.out.println(cursor.explain().toJson());
-        for (Document doc : cursor) {
-            System.out.println(doc.toJson());
-        }
+        System.out.println("Execution Time: " + cursor.explain().toBsonDocument().get("executionStats").asDocument().get("executionTimeMillis").asInt32().getValue());
+        //for (Document doc : cursor) {
+        //    System.out.println(doc.toJson());
+        //}
     }
 
     public static void deleteRestaurant(MongoCollection<Document> collection, String name) {
