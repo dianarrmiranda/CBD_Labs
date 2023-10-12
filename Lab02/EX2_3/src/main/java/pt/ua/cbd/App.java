@@ -7,13 +7,10 @@ import org.apache.logging.log4j.Logger;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import java.text.ParseException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
-import java.util.stream.Stream;
+import java.util.*;
 import java.util.stream.StreamSupport;
 
 public class App {
@@ -43,9 +40,9 @@ public class App {
 
             System.out.println("Alínea b) ");
             System.out.println();
-            collection.createIndex(new Document("localidade", 1));
-            collection.createIndex(new Document("gastronomia", 1));
-            collection.createIndex(new Document("nome", "text"));
+            collection.createIndex(Indexes.ascending("localidade"));
+            collection.createIndex(Indexes.ascending("gastronomia"));
+            collection.createIndex(Indexes.text("nome"));
 
             searchRestaurants(collection, "localidade", "Bronx");
             System.out.println();
@@ -112,10 +109,37 @@ public class App {
             }
             System.out.println();
 
+            PrintWriter out = new PrintWriter(new FileWriter("CBD_L203_<107457>.txt"));
             System.out.println("Alínea d) ");
-            countLocalidades(collection);
+            System.out.println("Numero de localidades distintas: " + countLocalidades(collection));
+            out.println("Numero de localidades distintas: " + countLocalidades(collection));
 
-        } catch (ParseException e) {
+            System.out.println();
+            out.println();
+            System.out.println("Número de restaurantes por localidade:");
+            out.println("Número de restaurantes por localidade:");
+
+            Map<String, Integer> locals = countRestByLocalidade(collection);
+            for (String s : locals.keySet()) {
+                System.out.println("-> " + s + " - " + locals.get(s));
+                out.println("-> " + s + " - " + locals.get(s));
+            }
+
+            System.out.println();
+            out.println();
+
+            String s = "Park";
+            System.out.println("Nome de restaurantes contendo '" + s + "' no nome:");
+            out.println("Nome de restaurantes contendo '" + s + "' no nome:");
+
+            List<String> nameCloser = getRestWithNameCloserTo(collection,s);
+            for (String name : nameCloser) {
+                System.out.println("-> " + name);
+                out.println("-> " + name);
+            }
+
+            out.close();
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -190,9 +214,35 @@ public class App {
         }
     }
 
-    public static void countLocalidades(MongoCollection<Document> collection) {
+    public static int countLocalidades(MongoCollection<Document> collection) {
         DistinctIterable<String> distinctLocal = collection.distinct("localidade", String.class);
         long count = StreamSupport.stream(distinctLocal.spliterator(), false).count();
-        System.out.println("Numero de localidades distintas: " + count);
+        return (int) (count);
     }
+
+    public static Map<String, Integer> countRestByLocalidade(MongoCollection<Document> collection) {
+        List<Bson> pipeline = Arrays.asList(
+                Aggregates.unwind("$localidade"),
+                Aggregates.group("$localidade", Accumulators.sum("totalLocal", 1))
+        );
+        AggregateIterable<Document> cursorAggr = collection.aggregate(pipeline);
+
+        Map<String, Integer> locals = new HashMap<>();
+        for (Document doc : cursorAggr) {
+            locals.put(doc.getString("_id"), doc.getInteger("totalLocal"));
+        }
+        return locals;
+    }
+
+    public static List<String> getRestWithNameCloserTo(MongoCollection<Document> collection, String name){
+        Bson filter = Filters.regex("nome", "Park");
+        FindIterable<Document> cursor = collection.find(filter);
+        List<String> nameCloser = new ArrayList<>();
+        for (Document doc : cursor) {
+            nameCloser.add(doc.getString("nome"));
+        }
+        return nameCloser;
+    }
+
+
 }
