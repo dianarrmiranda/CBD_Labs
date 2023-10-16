@@ -1,0 +1,11 @@
+Username ('Enter' for quit): diana
+Product: 1
+Username ('Enter' for quit): diana
+Product: 3
+Username ('Enter' for quit): jose
+Product: 3
+Username ('Enter' for quit): lofs
+Product: 4
+Username ('Enter' for quit): diana
+Product: 0
+Username ('Enter' for quit): 
