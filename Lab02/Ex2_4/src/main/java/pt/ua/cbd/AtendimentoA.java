@@ -21,13 +21,15 @@ import java.util.Scanner;
 public class AtendimentoA
 {
     private static final Logger logger = LogManager.getLogger(AtendimentoA.class);
+    private static final int limit = 3;
+    private static final int timslot = 5;
     public static void main( String[] args )
     {
         String uri = "mongodb://localhost:27017";
 
         try (MongoClient mongoClient = MongoClients.create(uri)){
             MongoDatabase database = mongoClient.getDatabase("cbd");
-            MongoCollection<Document> collection = database.getCollection("servAtendimento");
+            MongoCollection<Document> collection = database.getCollection("AtendimentoA");
 
             PrintWriter out = new PrintWriter(new FileWriter("CBD_L204a-out_107457.txt"));
             Scanner sc = new Scanner(System.in);
@@ -51,9 +53,11 @@ public class AtendimentoA
                     FindIterable<Document> cursor = collection.find(filter);
 
                     if (cursor.first() != null) {
-                        Document userDoc = cursor.first();
+                        Bson update = Updates.pullByFilter(Filters.lt("times", timestamp - timslot));
+                        UpdateResult result = collection.updateMany(filter, update);
 
-                        Bson update = Updates.addToSet("times", timestamp);
+                        Document userDoc = cursor.first();
+                        update = Updates.addToSet("times", timestamp);
                         UpdateOptions opt = new UpdateOptions().upsert(true);
                         try {
                             UpdateResult newProd = collection.updateOne(userDoc, update, opt);

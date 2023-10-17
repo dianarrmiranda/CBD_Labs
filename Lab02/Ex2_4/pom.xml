@@ -52,7 +52,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>pt.ua.cbd.AtendimentoA</mainClass>
+              <mainClass>pt.ua.cbd.AtendimentoB</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
