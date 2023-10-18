@@ -1,9 +1,7 @@
 package pt.ua.cbd;
 
-import com.mongodb.MongoException;
 import com.mongodb.client.*;
 import com.mongodb.client.model.*;
-import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
 import org.apache.logging.log4j.LogManager;
@@ -17,17 +15,15 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class AtendimentoB
-{
+public class AtendimentoB {
     private static final Logger logger = LogManager.getLogger(AtendimentoB.class);
-    private static final int limit = 3;
-    private static final int timslot = 5;
+    private static final int limit = 30;
+    private static final int timslot = 10;
 
-    public static void main( String[] args )
-    {
+    public static void main(String[] args) {
         String uri = "mongodb://localhost:27017";
 
-        try (MongoClient mongoClient = MongoClients.create(uri)){
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("cbd");
             MongoCollection<Document> collection = database.getCollection("AtendimentoB");
 
@@ -35,18 +31,16 @@ public class AtendimentoB
             Scanner sc = new Scanner(System.in);
 
             while (true) {
-                System.out.print("Username ('Enter' for quit): ");
-                out.print("Username ('Enter' for quit): ");
+                printFunction(out,"Username ('Enter' for quit): ", false, true );
                 String username = sc.nextLine().replaceAll("\\s", "");
-                out.println(username);
+                printFunction(out, username, true, false);
 
                 if (username.isEmpty()) {
                     break;
                 } else {
-                    System.out.print("Quantity: ");
-                    out.print("Quantity: ");
-                    String quantity = sc.nextLine();
-                    out.println(quantity);
+                    printFunction(out,"Quantity: ", false, true);
+                    int quantity = Integer.parseInt(sc.nextLine());
+                    printFunction(out, Integer.toString(quantity), true, false);
                     double timestamp = System.currentTimeMillis() / 1000.0;
 
                     Bson filter = Filters.eq("user", username);
@@ -54,31 +48,30 @@ public class AtendimentoB
 
                     if (cursor.first() != null) {
 
-                        Bson filterProds = Filters.and(Filters.eq("user", username), Filters.lt("products.time", timestamp - timslot));
-                        UpdateResult updateResult = collection.updateOne(filter, Updates.pull("products", filterProds));
+                        Bson update = Updates.pull("products", Filters.lt("time", timestamp - timslot));
+                        UpdateResult result = collection.updateOne(filter, update);
 
-                        Integer totalQuant = collection.aggregate(Arrays.asList(
+                        Document quantidade = collection.aggregate(Arrays.asList(
                                 Aggregates.match(filter),
                                 Aggregates.unwind("$products"),
-                                Aggregates.group("$user", Accumulators.sum("totalQuantity", new Document("$toInt", "$products.quantity"))))).first().getInteger("totalQuantity");
+                                Aggregates.group("$user", Accumulators.sum("totalQuantity", new Document("$toInt", "$products.quantity"))))
+                        ).first();
 
-
-                        if (totalQuant + Integer.parseInt(quantity) <= limit){
+                        int totalQuant = 0;
+                        if (quantidade != null) {
+                            totalQuant = quantidade.getInteger("totalQuantity");
+                        }
+                        if (totalQuant + quantity <= limit) {
                             Document newProd = new Document().append("quantity", quantity).append("time", timestamp);
-
-                            Bson update = Updates.addToSet("products", newProd);
+                            update = Updates.addToSet("products", newProd);
                             UpdateOptions opt = new UpdateOptions().upsert(true);
-                            try {
-                                UpdateResult newProdt = collection.updateOne(cursor.first(), update, opt);
-                            } catch (MongoException me) {
-                                System.err.println("Unable to update products due to an error: " + me);
-                            }
-                        }else {
-                            System.out.println("ERROR: The maximum product limit set for the time window has been exceeded.");
+                            UpdateResult newProdt = collection.updateOne(cursor.first(), update, opt);
+                        } else {
+                            printFunction(out,"ERROR: The maximum product limit set for the time window has been exceeded.", true, true);
                         }
 
                     } else {
-                        try {
+                        if (quantity <= limit) {
                             InsertOneResult newUser = collection.insertOne(new Document()
                                     .append("_id", new ObjectId())
                                     .append("user", username)
@@ -86,22 +79,31 @@ public class AtendimentoB
                                             new Document()
                                                     .append("quantity", quantity)
                                                     .append("time", timestamp))));
-
-                        } catch (MongoException me) {
-                            System.err.println("Unable to add new user due to an error: " + me);
                         }
-
+                        else {
+                            printFunction(out,"ERROR: The maximum product limit set for the time window has been exceeded.", true, true);
+                        }
                     }
-
-
                 }
             }
-
             out.close();
             sc.close();
-
-        } catch (Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
+        }
+    }
+
+    private static void printFunction(PrintWriter writer, String toPrint, boolean println, boolean both) {
+        if (println && both) {
+            System.out.println(toPrint);
+            writer.println(toPrint);
+        } else if (!println && both) {
+            System.out.print(toPrint);
+            writer.print(toPrint);
+        } else if (println) {
+            writer.println(toPrint);
+        } else {
+            writer.print(toPrint);
         }
     }
 }

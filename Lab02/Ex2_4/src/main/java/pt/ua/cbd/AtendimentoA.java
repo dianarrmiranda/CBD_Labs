@@ -1,7 +1,7 @@
 package pt.ua.cbd;
 
-import com.mongodb.MongoException;
 import com.mongodb.client.*;
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
@@ -22,7 +22,7 @@ public class AtendimentoA
 {
     private static final Logger logger = LogManager.getLogger(AtendimentoA.class);
     private static final int limit = 3;
-    private static final int timslot = 5;
+    private static final int timslot = 10;
     public static void main( String[] args )
     {
         String uri = "mongodb://localhost:27017";
@@ -35,18 +35,16 @@ public class AtendimentoA
             Scanner sc = new Scanner(System.in);
 
             while (true) {
-                System.out.print("Username ('Enter' for quit): ");
-                out.print("Username ('Enter' for quit): ");
+                printFunction(out, "Username ('Enter' for quit): ", false, true);
                 String username = sc.nextLine().replaceAll("\\s", "");
-                out.println(username);
+                printFunction(out, username, true, false);
 
                 if (username.isEmpty()) {
                     break;
                 } else {
-                    System.out.print("Product: ");
-                    out.print("Product: ");
+                    printFunction(out, "Product: ", false, true);
                     String product = sc.nextLine();
-                    out.println(product);
+                    printFunction(out, product, true, false);
                     double timestamp = System.currentTimeMillis() / 1000.0;
 
                     Bson filter = Filters.eq("user", username);
@@ -56,27 +54,27 @@ public class AtendimentoA
                         Bson update = Updates.pullByFilter(Filters.lt("times", timestamp - timslot));
                         UpdateResult result = collection.updateMany(filter, update);
 
-                        Document userDoc = cursor.first();
-                        update = Updates.addToSet("times", timestamp);
-                        UpdateOptions opt = new UpdateOptions().upsert(true);
-                        try {
+                        int countProds = collection.aggregate(Arrays.asList(
+                                Aggregates.match(filter),
+                                Aggregates.project(new Document("nProducts", new Document("$size", "$times")))
+                        )).first().getInteger("nProducts");
+
+                        if (countProds + 1 <= limit) {
+                            Document userDoc = cursor.first();
+                            update = Updates.addToSet("times", timestamp);
+                            UpdateOptions opt = new UpdateOptions().upsert(true);
                             UpdateResult newProd = collection.updateOne(userDoc, update, opt);
-                        } catch (MongoException me) {
-                            System.err.println("Unable to update products due to an error: " + me);
+
+                        } else {
+                            printFunction(out, "ERROR: The maximum product limit set for the time window has been exceeded.", true, true);
                         }
                     } else {
-                        try {
-                            InsertOneResult newUser = collection.insertOne(new Document()
+                        InsertOneResult newUser = collection.insertOne(new Document()
                                     .append("_id", new ObjectId())
                                     .append("user", username)
                                     .append("times", Arrays.asList(timestamp)));
-                        } catch (MongoException me) {
-                            System.err.println("Unable to add new user due to an error: " + me);
-                        }
 
                     }
-
-
                 }
             }
 
@@ -85,6 +83,20 @@ public class AtendimentoA
 
         } catch (Exception e){
             System.err.println(e.getMessage());
+        }
+    }
+
+    private static void printFunction(PrintWriter writer, String toPrint, boolean println, boolean both) {
+        if (println && both) {
+            System.out.println(toPrint);
+            writer.println(toPrint);
+        } else if (!println && both) {
+            System.out.print(toPrint);
+            writer.print(toPrint);
+        } else if (println) {
+            writer.println(toPrint);
+        } else {
+            writer.print(toPrint);
         }
     }
 }
