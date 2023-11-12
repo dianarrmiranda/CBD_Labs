@@ -1,0 +1,104 @@
+[
+  {
+    "video_id": 5,
+    "timestamp": "2023-11-11 17:44:30.227",
+    "comment": "Maravilhoso!",
+    "user_id": "diana"
+  },
+  {
+    "video_id": 5,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Muito bem feito!",
+    "user_id": "antonio"
+  },
+  {
+    "video_id": 10,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Muito bem explicado.",
+    "user_id": "pedro"
+  },
+  {
+    "video_id": 13,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Vídeo muito interessante.",
+    "user_id": "rita"
+  },
+  {
+    "video_id": 11,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Vou recomendar este vídeo.",
+    "user_id": "carlos"
+  },
+  {
+    "video_id": 1,
+    "timestamp": "2023-11-11 17:42:05.083",
+    "comment": "Adorei este vídeo!",
+    "user_id": "diana"
+  },
+  {
+    "video_id": 8,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Aprendi muito com este vídeo.",
+    "user_id": "marta"
+  },
+  {
+    "video_id": 2,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Adorei a explicação!",
+    "user_id": "maria"
+  },
+  {
+    "video_id": 4,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Gostei muito deste vídeo.",
+    "user_id": "sara"
+  },
+  {
+    "video_id": 15,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Obrigado por compartilhar.",
+    "user_id": "isabel"
+  },
+  {
+    "video_id": 7,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Este vídeo ajudou-me bastante.",
+    "user_id": "ana"
+  },
+  {
+    "video_id": 6,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Continuem com o bom trabalho!",
+    "user_id": "luis"
+  },
+  {
+    "video_id": 9,
+    "timestamp": "2023-11-11 17:42:05.083",
+    "comment": "Muito informativo, obrigado!",
+    "user_id": "jose"
+  },
+  {
+    "video_id": 14,
+    "timestamp": "2023-11-11 17:45:28.340",
+    "comment": "Muito Bom.",
+    "user_id": "diana"
+  },
+  {
+    "video_id": 14,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Vou assistir mais vezes.",
+    "user_id": "manuel"
+  },
+  {
+    "video_id": 12,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Vídeo muito útil.",
+    "user_id": "joao"
+  },
+  {
+    "video_id": 3,
+    "timestamp": "2023-11-11 17:42:05.084",
+    "comment": "Excelente conteúdo!",
+    "user_id": "diogo"
+  }
+]

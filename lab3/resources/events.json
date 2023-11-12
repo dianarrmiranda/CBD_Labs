@@ -1,0 +1,58 @@
+[
+  {
+    "user_id": "diogo",
+    "video_id": 3,
+    "eventtime": "2023-11-11 17:42:05.084",
+    "type": "stop",
+    "videotime": 50
+  },
+  {
+    "user_id": "marta",
+    "video_id": 1,
+    "eventtime": "2023-11-11 17:42:05.084",
+    "type": "play",
+    "videotime": 0
+  },
+  {
+    "user_id": "marta",
+    "video_id": 4,
+    "eventtime": "2023-11-11 17:42:05.084",
+    "type": "pause",
+    "videotime": 30
+  },
+  {
+    "user_id": "luis",
+    "video_id": 5,
+    "eventtime": "2023-11-11 17:42:05.084",
+    "type": "stop",
+    "videotime": 70
+  },
+  {
+    "user_id": "jose",
+    "video_id": 2,
+    "eventtime": "2023-11-11 17:42:05.084",
+    "type": "stop",
+    "videotime": 40
+  },
+  {
+    "user_id": "diana",
+    "video_id": 1,
+    "eventtime": "2023-11-11 17:42:05.084",
+    "type": "stop",
+    "videotime": 30
+  },
+  {
+    "user_id": "manuel",
+    "video_id": 14,
+    "eventtime": "2023-11-11 17:42:05.084",
+    "type": "play",
+    "videotime": 0
+  },
+  {
+    "user_id": "isabel",
+    "video_id": 8,
+    "eventtime": "2023-11-11 17:42:05.084",
+    "type": "play",
+    "videotime": 30
+  }
+]
