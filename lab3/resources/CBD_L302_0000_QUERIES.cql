@@ -41,9 +41,11 @@ SELECT * FROM lab03_ex2.commentsbyfollowers WHERE user_id = 'diana';
 // ORDER BY is only supported when the partition key is restricted by an EQ or an IN.
 
 // 10. Uma query que retorne todos os videos e que mostre claramente a forma pela qual estao ordenados;
-// PERGUNTAR AO STOR
+// Não é possível ver de forma clara a ordem que estão.
+
 // 11. Lista com as Tags existentes e o numero de videos catalogados com cada uma delas;
-// FAZER NOVA TABELA?
+SELECT * FROM lab03_ex2.nvideosbytag;
+
 // 12. O número de seguidores de um video
 SELECT video_id, COUNT(follower) AS num_seguidores FROM lab03_ex2.video_followers WHERE video_id = 1;
 

@@ -1,6 +1,77 @@
-[{"video_id": 8, "user_id": "maria", "rating": 5},
-{"video_id": 15, "user_id": "manuel", "rating": 4},
-{"video_id": 7, "user_id": "pedro", "rating": 4},
-{"video_id": 9, "user_id": "joao", "rating": 4},
-{"video_id": 14, "user_id": "rita", "rating": 5},
-{"video_id": 12, "user_id": "sara", "rating": 4}]
+[
+  {
+    "video_id": 13,
+    "user_id": "antonio",
+    "rating": 3
+  },
+  {
+    "video_id": 1,
+    "user_id": "marta",
+    "rating": 4
+  },
+  {
+    "video_id": 15,
+    "user_id": "manuel",
+    "rating": 4
+  },
+  {
+    "video_id": 12,
+    "user_id": "sara",
+    "rating": 4
+  },
+  {
+    "video_id": 9,
+    "user_id": "joao",
+    "rating": 4
+  },
+  {
+    "video_id": 10,
+    "user_id": "isabel",
+    "rating": 3
+  },
+  {
+    "video_id": 1,
+    "user_id": "diana",
+    "rating": 5
+  },
+  {
+    "video_id": 1,
+    "user_id": "diogo",
+    "rating": 5
+  },
+  {
+    "video_id": 7,
+    "user_id": "pedro",
+    "rating": 4
+  },
+  {
+    "video_id": 14,
+    "user_id": "rita",
+    "rating": 5
+  },
+  {
+    "video_id": 1,
+    "user_id": "ana",
+    "rating": 3
+  },
+  {
+    "video_id": 1,
+    "user_id": "luis",
+    "rating": 5
+  },
+  {
+    "video_id": 1,
+    "user_id": "jose",
+    "rating": 4
+  },
+  {
+    "video_id": 11,
+    "user_id": "carlos",
+    "rating": 5
+  },
+  {
+    "video_id": 8,
+    "user_id": "maria",
+    "rating": 5
+  }
+]

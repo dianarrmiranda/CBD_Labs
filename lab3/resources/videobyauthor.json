@@ -1,0 +1,130 @@
+[
+  {
+    "author": "marta",
+    "id": 4,
+    "description": "A day at the beach",
+    "name": "Beach Day",
+    "tags": ["Aveiro", "beach", "day"],
+    "uploaddate": "2022-04-14 12:35:00.000"
+  },
+  {
+    "author": "antonio",
+    "id": 13,
+    "description": "A tutorial on coding",
+    "name": "Coding Tutorial",
+    "tags": ["coding", "tutorial"],
+    "uploaddate": "2023-01-20 21:05:00.000"
+  },
+  {
+    "author": "ana",
+    "id": 6,
+    "description": "A 30-minute yoga session",
+    "name": "Yoga Session",
+    "tags": ["session", "yoga"],
+    "uploaddate": "2022-06-16 14:55:00.000"
+  },
+  {
+    "author": "carlos",
+    "id": 11,
+    "description": "Tips for gardening",
+    "name": "Gardening Tips",
+    "tags": ["gardening", "tips"],
+    "uploaddate": "2022-11-19 19:45:00.000"
+  },
+  {
+    "author": "rita",
+    "id": 14,
+    "description": "A 20-minute fitness workout",
+    "name": "Fitness Workout",
+    "tags": ["fitness", "workout"],
+    "uploaddate": "2023-02-11 22:15:00.000"
+  },
+  {
+    "author": "pedro",
+    "id": 7,
+    "description": "A beginner guitar lesson",
+    "name": "Guitar Lesson",
+    "tags": ["guitar", "lesson"],
+    "uploaddate": "2022-07-27 15:05:00.000"
+  },
+  {
+    "author": "luis",
+    "id": 5,
+    "description": "Cooking a pasta dish",
+    "name": "Cooking Pasta",
+    "tags": ["cooking", "pasta"],
+    "uploaddate": "2022-05-05 13:45:00.000"
+  },
+  {
+    "author": "joao",
+    "id": 9,
+    "description": "A fun science experiment",
+    "name": "Science Experiment",
+    "tags": ["experiment", "science"],
+    "uploaddate": "2022-09-18 17:25:00.000"
+  },
+  {
+    "author": "jose",
+    "id": 2,
+    "description": "A tour of the city",
+    "name": "City Tour",
+    "tags": ["city", "tour"],
+    "uploaddate": "2022-02-12 10:15:00.000"
+  },
+  {
+    "author": "diana",
+    "id": 1,
+    "description": "A relaxing walk through the forest",
+    "name": "Nature Walk",
+    "tags": ["Aveiro", "forest", "nature", "walk"],
+    "uploaddate": "2022-01-25 15:35:00.000"
+  },
+  {
+    "author": "diana",
+    "id": 3,
+    "description": "Hiking up the mountain",
+    "name": "Mountain Hike",
+    "tags": ["hike", "mountain"],
+    "uploaddate": "2022-03-23 11:25:00.000"
+  },
+  {
+    "author": "diana",
+    "id": 8,
+    "description": "A tutorial on drawing",
+    "name": "Art Tutorial",
+    "tags": ["art", "tutorial"],
+    "uploaddate": "2022-08-28 16:15:00.000"
+  },
+  {
+    "author": "diana",
+    "id": 16,
+    "description": "A relaxing Run through the forest",
+    "name": "Nature Run",
+    "tags": ["Aveiro", "forest", "nature", "run"],
+    "uploaddate": "2022-01-10 10:00:00.000"
+  },
+  {
+    "author": "manuel",
+    "id": 15,
+    "description": "A vlog of my travels",
+    "name": "Travel Vlog",
+    "tags": ["Aveiro", "travel", "vlog"],
+    "uploaddate": "2023-03-01 23:25:00.000"
+  },
+  {
+    "author": "sara",
+    "id": 12,
+    "description": "A guide to photography",
+    "name": "Photography Guide",
+    "tags": ["Aveiro", "guide", "photography"],
+    "uploaddate": "2022-12-30 20:55:00.000"
+  },
+  {
+    "author": "isabel",
+    "id": 10,
+    "description": "A local basketball game",
+    "name": "Basketball Game",
+    "tags": ["basketball", "game"],
+    "uploaddate": "2022-10-29 18:35:00.000"
+  }
+]

@@ -1,0 +1,393 @@
+[
+  {
+    "user_id": "diogo",
+    "video_id": 1,
+    "comments": {
+      "diana": ["Adorei este vídeo!"],
+      "luis": ["Muito Bom."],
+      "maria": ["Maravilhoso!"],
+      "rita": ["Perfeito"]
+    }
+  },
+  {
+    "user_id": "diogo",
+    "video_id": 11,
+    "comments": {
+      "carlos": ["Vou recomendar este vídeo."]
+    }
+  },
+  {
+    "user_id": "marta",
+    "video_id": 1,
+    "comments": {
+      "diana": ["Adorei este vídeo!"],
+      "luis": ["Muito Bom."],
+      "maria": ["Maravilhoso!"],
+      "rita": ["Perfeito"]
+    }
+  },
+  {
+    "user_id": "marta",
+    "video_id": 2,
+    "comments": {
+      "maria": ["Adorei a explicação!"]
+    }
+  },
+  {
+    "user_id": "marta",
+    "video_id": 6,
+    "comments": {
+      "luis": ["Continuem com o bom trabalho!"]
+    }
+  },
+  {
+    "user_id": "marta",
+    "video_id": 10,
+    "comments": {
+      "pedro": ["Muito bem explicado."]
+    }
+  },
+  {
+    "user_id": "marta",
+    "video_id": 11,
+    "comments": {
+      "carlos": ["Vou recomendar este vídeo."]
+    }
+  },
+  {
+    "user_id": "antonio",
+    "video_id": 5,
+    "comments": {
+      "antonio": ["Muito bem feito!"],
+      "diana": ["Maravilhoso!"]
+    }
+  },
+  {
+    "user_id": "antonio",
+    "video_id": 9,
+    "comments": {
+      "jose": ["Muito informativo, obrigado!"]
+    }
+  },
+  {
+    "user_id": "antonio",
+    "video_id": 14,
+    "comments": {
+      "diana": ["Muito Bom."],
+      "manuel": ["Vou assistir mais vezes."]
+    }
+  },
+  {
+    "user_id": "ana",
+    "video_id": 1,
+    "comments": {
+      "diana": ["Adorei este vídeo!"],
+      "luis": ["Muito Bom."],
+      "maria": ["Maravilhoso!"],
+      "rita": ["Perfeito"]
+    }
+  },
+  {
+    "user_id": "ana",
+    "video_id": 2,
+    "comments": {
+      "maria": ["Adorei a explicação!"]
+    }
+  },
+  {
+    "user_id": "ana",
+    "video_id": 7,
+    "comments": {
+      "ana": ["Este vídeo ajudou-me bastante."]
+    }
+  },
+  {
+    "user_id": "ana",
+    "video_id": 10,
+    "comments": {
+      "pedro": ["Muito bem explicado."]
+    }
+  },
+  {
+    "user_id": "ana",
+    "video_id": 12,
+    "comments": {
+      "joao": ["Vídeo muito útil."]
+    }
+  },
+  {
+    "user_id": "carlos",
+    "video_id": 8,
+    "comments": {
+      "marta": ["Aprendi muito com este vídeo."]
+    }
+  },
+  {
+    "user_id": "carlos",
+    "video_id": 13,
+    "comments": {
+      "rita": ["Vídeo muito interessante."]
+    }
+  },
+  {
+    "user_id": "maria",
+    "video_id": 12,
+    "comments": {
+      "joao": ["Vídeo muito útil."]
+    }
+  },
+  {
+    "user_id": "maria",
+    "video_id": 14,
+    "comments": {
+      "diana": ["Muito Bom."],
+      "manuel": ["Vou assistir mais vezes."]
+    }
+  },
+  {
+    "user_id": "maria",
+    "video_id": 15,
+    "comments": {
+      "isabel": ["Obrigado por compartilhar."]
+    }
+  },
+  {
+    "user_id": "rita",
+    "video_id": 5,
+    "comments": {
+      "antonio": ["Muito bem feito!"],
+      "diana": ["Maravilhoso!"]
+    }
+  },
+  {
+    "user_id": "rita",
+    "video_id": 9,
+    "comments": {
+      "jose": ["Muito informativo, obrigado!"]
+    }
+  },
+  {
+    "user_id": "rita",
+    "video_id": 14,
+    "comments": {
+      "diana": ["Muito Bom."],
+      "manuel": ["Vou assistir mais vezes."]
+    }
+  },
+  {
+    "user_id": "pedro",
+    "video_id": 3,
+    "comments": {
+      "diogo": ["Excelente conteúdo!"]
+    }
+  },
+  {
+    "user_id": "pedro",
+    "video_id": 7,
+    "comments": {
+      "ana": ["Este vídeo ajudou-me bastante."]
+    }
+  },
+  {
+    "user_id": "pedro",
+    "video_id": 12,
+    "comments": {
+      "joao": ["Vídeo muito útil."]
+    }
+  },
+  {
+    "user_id": "pedro",
+    "video_id": 14,
+    "comments": {
+      "diana": ["Muito Bom."],
+      "manuel": ["Vou assistir mais vezes."]
+    }
+  },
+  {
+    "user_id": "pedro",
+    "video_id": 15,
+    "comments": {
+      "isabel": ["Obrigado por compartilhar."]
+    }
+  },
+  {
+    "user_id": "luis",
+    "video_id": 1,
+    "comments": {
+      "diana": ["Adorei este vídeo!"],
+      "luis": ["Muito Bom."],
+      "maria": ["Maravilhoso!"],
+      "rita": ["Perfeito"]
+    }
+  },
+  {
+    "user_id": "luis",
+    "video_id": 2,
+    "comments": {
+      "maria": ["Adorei a explicação!"]
+    }
+  },
+  {
+    "user_id": "luis",
+    "video_id": 6,
+    "comments": {
+      "luis": ["Continuem com o bom trabalho!"]
+    }
+  },
+  {
+    "user_id": "luis",
+    "video_id": 10,
+    "comments": {
+      "pedro": ["Muito bem explicado."]
+    }
+  },
+  {
+    "user_id": "luis",
+    "video_id": 11,
+    "comments": {
+      "carlos": ["Vou recomendar este vídeo."]
+    }
+  },
+  {
+    "user_id": "joao",
+    "video_id": 3,
+    "comments": {
+      "diogo": ["Excelente conteúdo!"]
+    }
+  },
+  {
+    "user_id": "joao",
+    "video_id": 8,
+    "comments": {
+      "marta": ["Aprendi muito com este vídeo."]
+    }
+  },
+  {
+    "user_id": "joao",
+    "video_id": 13,
+    "comments": {
+      "rita": ["Vídeo muito interessante."]
+    }
+  },
+  {
+    "user_id": "jose",
+    "video_id": 1,
+    "comments": {
+      "diana": ["Adorei este vídeo!"],
+      "luis": ["Muito Bom."],
+      "maria": ["Maravilhoso!"],
+      "rita": ["Perfeito"]
+    }
+  },
+  {
+    "user_id": "jose",
+    "video_id": 10,
+    "comments": {
+      "pedro": ["Muito bem explicado."]
+    }
+  },
+  {
+    "user_id": "jose",
+    "video_id": 15,
+    "comments": {
+      "isabel": ["Obrigado por compartilhar."]
+    }
+  },
+  {
+    "user_id": "diana",
+    "video_id": 1,
+    "comments": {
+      "diana": ["Adorei este vídeo!"],
+      "luis": ["Muito Bom."],
+      "maria": ["Maravilhoso!"],
+      "rita": ["Perfeito"]
+    }
+  },
+  {
+    "user_id": "diana",
+    "video_id": 6,
+    "comments": {
+      "luis": ["Continuem com o bom trabalho!"]
+    }
+  },
+  {
+    "user_id": "diana",
+    "video_id": 10,
+    "comments": {
+      "pedro": ["Muito bem explicado."]
+    }
+  },
+  {
+    "user_id": "diana",
+    "video_id": 15,
+    "comments": {
+      "isabel": ["Obrigado por compartilhar."]
+    }
+  },
+  {
+    "user_id": "manuel",
+    "video_id": 5,
+    "comments": {
+      "antonio": ["Muito bem feito!"],
+      "diana": ["Maravilhoso!"]
+    }
+  },
+  {
+    "user_id": "manuel",
+    "video_id": 10,
+    "comments": {
+      "pedro": ["Muito bem explicado."]
+    }
+  },
+  {
+    "user_id": "manuel",
+    "video_id": 14,
+    "comments": {
+      "diana": ["Muito Bom."],
+      "manuel": ["Vou assistir mais vezes."]
+    }
+  },
+  {
+    "user_id": "manuel",
+    "video_id": 15,
+    "comments": {
+      "isabel": ["Obrigado por compartilhar."]
+    }
+  },
+  {
+    "user_id": "sara",
+    "video_id": 9,
+    "comments": {
+      "jose": ["Muito informativo, obrigado!"]
+    }
+  },
+  {
+    "user_id": "sara",
+    "video_id": 14,
+    "comments": {
+      "diana": ["Muito Bom."],
+      "manuel": ["Vou assistir mais vezes."]
+    }
+  },
+  {
+    "user_id": "isabel",
+    "video_id": 4,
+    "comments": {
+      "sara": ["Gostei muito deste vídeo."]
+    }
+  },
+  {
+    "user_id": "isabel",
+    "video_id": 8,
+    "comments": {
+      "marta": ["Aprendi muito com este vídeo."]
+    }
+  },
+  {
+    "user_id": "isabel",
+    "video_id": 13,
+    "comments": {
+      "rita": ["Vídeo muito interessante."]
+    }
+  }
+]

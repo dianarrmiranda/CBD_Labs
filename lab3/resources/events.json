@@ -1,58 +1,149 @@
 [
   {
-    "user_id": "diogo",
-    "video_id": 3,
-    "eventtime": "2023-11-11 17:42:05.084",
-    "type": "stop",
-    "videotime": 50
-  },
-  {
-    "user_id": "marta",
-    "video_id": 1,
-    "eventtime": "2023-11-11 17:42:05.084",
-    "type": "play",
-    "videotime": 0
-  },
-  {
     "user_id": "marta",
     "video_id": 4,
-    "eventtime": "2023-11-11 17:42:05.084",
+    "eventtime": "2022-12-30 20:55:00.000",
     "type": "pause",
     "videotime": 30
   },
   {
-    "user_id": "luis",
-    "video_id": 5,
-    "eventtime": "2023-11-11 17:42:05.084",
+    "user_id": "diana",
+    "video_id": 1,
+    "eventtime": "2023-09-01 05:25:00.000",
     "type": "stop",
-    "videotime": 70
-  },
-  {
-    "user_id": "jose",
-    "video_id": 2,
-    "eventtime": "2023-11-11 17:42:05.084",
-    "type": "stop",
-    "videotime": 40
+    "videotime": 80
   },
   {
     "user_id": "diana",
     "video_id": 1,
-    "eventtime": "2023-11-11 17:42:05.084",
+    "eventtime": "2023-08-01 04:15:00.000",
+    "type": "play",
+    "videotime": 52
+  },
+  {
+    "user_id": "diana",
+    "video_id": 1,
+    "eventtime": "2023-07-01 03:05:00.000",
+    "type": "pause",
+    "videotime": 52
+  },
+  {
+    "user_id": "diana",
+    "video_id": 1,
+    "eventtime": "2023-06-01 02:55:00.000",
+    "type": "play",
+    "videotime": 30
+  },
+  {
+    "user_id": "diana",
+    "video_id": 1,
+    "eventtime": "2022-03-23 11:25:00.000",
     "type": "stop",
     "videotime": 30
   },
   {
+    "user_id": "diana",
+    "video_id": 1,
+    "eventtime": "2022-01-25 15:35:00.000",
+    "type": "play",
+    "videotime": 0
+  },
+  {
     "user_id": "manuel",
     "video_id": 14,
-    "eventtime": "2023-11-11 17:42:05.084",
+    "eventtime": "2023-04-01 00:35:00.000",
     "type": "play",
     "videotime": 0
   },
   {
     "user_id": "isabel",
     "video_id": 8,
-    "eventtime": "2023-11-11 17:42:05.084",
+    "eventtime": "2023-05-01 01:45:00.000",
     "type": "play",
     "videotime": 30
+  },
+  {
+    "user_id": "isabel",
+    "video_id": 8,
+    "eventtime": "2022-11-19 19:45:00.000",
+    "type": "pause",
+    "videotime": 30
+  },
+  {
+    "user_id": "isabel",
+    "video_id": 8,
+    "eventtime": "2022-08-28 16:15:00.000",
+    "type": "play",
+    "videotime": 0
+  },
+  {
+    "user_id": "luis",
+    "video_id": 5,
+    "eventtime": "2023-03-01 23:25:00.000",
+    "type": "stop",
+    "videotime": 70
+  },
+  {
+    "user_id": "luis",
+    "video_id": 5,
+    "eventtime": "2023-02-11 22:15:00.000",
+    "type": "pause",
+    "videotime": 35
+  },
+  {
+    "user_id": "luis",
+    "video_id": 5,
+    "eventtime": "2023-01-20 21:05:00.000",
+    "type": "play",
+    "videotime": 0
+  },
+  {
+    "user_id": "marta",
+    "video_id": 1,
+    "eventtime": "2022-02-12 10:15:00.000",
+    "type": "play",
+    "videotime": 0
+  },
+  {
+    "user_id": "jose",
+    "video_id": 2,
+    "eventtime": "2022-06-16 14:55:00.000",
+    "type": "stop",
+    "videotime": 40
+  },
+  {
+    "user_id": "jose",
+    "video_id": 2,
+    "eventtime": "2022-05-05 13:45:00.000",
+    "type": "pause",
+    "videotime": 20
+  },
+  {
+    "user_id": "jose",
+    "video_id": 2,
+    "eventtime": "2022-04-14 12:35:00.000",
+    "type": "play",
+    "videotime": 0
+  },
+  {
+    "user_id": "diogo",
+    "video_id": 3,
+    "eventtime": "2022-10-29 18:35:00.000",
+    "type": "stop",
+    "videotime": 50
+  },
+  {
+    "user_id": "diogo",
+    "video_id": 3,
+    "eventtime": "2022-09-18 17:25:00.000",
+    "type": "pause",
+    "videotime": 25
+  },
+  {
+    "user_id": "diogo",
+    "video_id": 3,
+    "eventtime": "2022-07-27 15:05:00.000",
+    "type": "play",
+    "videotime": 0
   }
 ]
