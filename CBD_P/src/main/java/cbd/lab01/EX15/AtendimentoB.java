@@ -13,8 +13,8 @@ import java.util.Set;
 public class AtendimentoB {
     public static String CLIENTS_PRODUCTS_QUANT = "clientsProdsQuant";
     public static void main(String[] args) throws IOException {
-
-        final int timeslot = 20;
+        long startTime = System.nanoTime();
+        final int timeslot = 10;
         final int limit = 30;
 
         Jedis jedis = new Jedis();
@@ -88,5 +88,8 @@ public class AtendimentoB {
         out.close();
         sc.close();
         jedis.close();
+
+        long endTime = System.nanoTime() - startTime;
+        System.out.println("Tempo de execução: " + endTime + " nanosegundos");
     }
 }

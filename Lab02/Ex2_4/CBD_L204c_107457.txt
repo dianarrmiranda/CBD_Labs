@@ -1,0 +1,6 @@
+A diferança maior entre as implementações é a forma como os dados são guardados e manipulados. Pois, a lógica que usei para fazer as duas implementação foi muito semelhante.
+Na implementção com Mongo os dados são guardados no disco como documentos BSON, permite que sejam armazenados dados complexos e em grande quantidade, no entanto, as operções de leitura e escrita são mais lentos que no redis.
+Na implementação em Redis os dados são guardados em memória, usa um modelo chave-valor. É muito mais rápido a fazer operações de leitura e escrita, no entanto não tem capacidade para um grande volume de dados, pois é limitado pela memória disponível no computador.
+O tempo de execução com o Mongo foi 21027134989 nanosegundos e com Redis foi 19382130552 nanosegundos.
+Como os dados são poucos as métricas de desempenho não são muito diferentes num e noutro. No entanto, se houvesse um grande número de pedidos a ocorrer a melhor escolha seria o Mongo, uma vez que, é capaz de lidar com grandes volumes de dados e tem escalabilidade horizontal.
+

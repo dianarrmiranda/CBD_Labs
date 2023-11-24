@@ -1,0 +1,40 @@
+//Exercício 2.5
+
+//b) 
+  db.phones.find().count()
+//   200000
+   
+//c) 
+function prefixCount() {
+  var cursor = db.phones.aggregate([{$group: {_id: "$components.prefix", count: { $sum: 1}}}]);
+  while (cursor.hasNext()) {
+    printjson(cursor.next());
+  }
+ }
+// cbd> prefixCount()
+// {
+//   _id: 21,
+//   count: 33330
+// }
+// {
+//   _id: 232,
+//   count: 33296
+// }
+// {
+//   _id: 234,
+//   count: 33437
+// }
+// {
+//   _id: 22,
+//   count: 33293
+// }
+// {
+//   _id: 233,
+//   count: 33287
+// }
+// {
+//   _id: 231,
+//   count: 33357
+// }
+// 
+

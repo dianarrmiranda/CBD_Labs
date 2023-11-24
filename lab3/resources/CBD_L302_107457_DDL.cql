@@ -26,7 +26,7 @@ CREATE TABLE lab03_ex2.videoByAuthor(
     author VARCHAR,
     tags set<VARCHAR>,
     uploadDate timestamp,
-    PRIMARY KEY (author, id)
+    PRIMARY KEY ((author),uploadDate, id)
 );
 
 CREATE TABLE lab03_ex2.nVideosBytag(
@@ -88,6 +88,6 @@ CREATE TABLE lab03_ex2.ratings(
     user_id TEXT,
     video_id int,
     rating INT,
-    PRIMARY KEY ( (video_id, user_id), rating )
+    PRIMARY KEY ( (video_id),rating,user_id)
 )WITH CLUSTERING ORDER BY (rating DESC );
 

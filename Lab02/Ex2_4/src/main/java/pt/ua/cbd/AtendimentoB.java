@@ -21,6 +21,8 @@ public class AtendimentoB {
     private static final int timslot = 10;
 
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
+
         String uri = "mongodb://localhost:27017";
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
@@ -44,7 +46,7 @@ public class AtendimentoB {
                     double timestamp = System.currentTimeMillis() / 1000.0;
 
                     Bson filter = Filters.eq("user", username);
-                    FindIterable<Document> cursor = collection.find(filter).projection(Projections.include("times"));
+                    FindIterable<Document> cursor = collection.find(filter).projection(Projections.include("times")).limit(1);
 
                     if (cursor.first() != null) {
 
@@ -91,6 +93,9 @@ public class AtendimentoB {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+
+        long endTime = System.nanoTime() - startTime;
+        System.out.println("Tempo de execução: " + endTime + " nanosegundos");
     }
 
     private static void printFunction(PrintWriter writer, String toPrint, boolean println, boolean both) {

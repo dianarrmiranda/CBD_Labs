@@ -2,15 +2,15 @@ Username ('Enter' for quit): diana
 Quantity: 40
 ERROR: The maximum product limit set for the time window has been exceeded.
 Username ('Enter' for quit): diana
-Quantity: 20
+Quantity: 15
 Username ('Enter' for quit): diana
 Quantity: 15
+Username ('Enter' for quit): diana
+Quantity: 4
 ERROR: The maximum product limit set for the time window has been exceeded.
 Username ('Enter' for quit): diana
-Quantity: 10
-Username ('Enter' for quit): diana
-Quantity: 2
+Quantity: 4
 ERROR: The maximum product limit set for the time window has been exceeded.
 Username ('Enter' for quit): diana
-Quantity: 5
+Quantity: 3
 Username ('Enter' for quit): 
