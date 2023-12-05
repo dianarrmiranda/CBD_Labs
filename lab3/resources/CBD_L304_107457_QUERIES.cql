@@ -1,6 +1,6 @@
 USE lab03_ex4;
 
-//e) Utilização de, pelo menos, 5 updates e 5 deletes de dados:
+//e- Utilização de, pelo menos, 5 updates e 5 deletes de dados:
 UPDATE product SET categories = {'Computing', 'Storage', 'Business'} WHERE id = 11;
 UPDATE product SET details = details + {'Graphics': 'NVIDIA GeForce RTX 3060'} WHERE id = 10;
 UPDATE "order" SET products = products - [8], total = 1759.97 WHERE costumer_id = 1 and date = '2023-01-01 10:30:00.000';
@@ -14,7 +14,7 @@ DELETE FROM product WHERE id = 10;
 DELETE FROM "order" WHERE costumer_id = 1 and date = '2023-01-01 10:30:00.000';
 DELETE FROM costumer WHERE id = 1;
 
-//f) Criação de 10 queries expressivas do seu domínio de conhecimento da cláusula
+//f- Criação de 10 queries expressivas do seu domínio de conhecimento da cláusula
 
 //1. Obter todos os produtos de uma determinada categoria.
 SELECT * FROM product WHERE categories CONTAINS 'Performance';

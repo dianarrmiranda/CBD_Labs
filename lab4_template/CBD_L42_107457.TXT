@@ -1,0 +1,113 @@
+// NMEC: 107457
+
+#1 Encontre todos os atores que dirigiram um filme em que também atuaram e apresente o nome do ator e o título do filme.
+MATCH (a:Person)-[:DIRECTED]->(b:Movie), (a:Person)-[:ACTED_IN]->(b:Movie)
+RETURN a,b
+
+# 2. Para cada filme realizado depois de 2005, apresente os nomes de todos os atores que atuaram nesse filme.
+MATCH (a:Movie), (b:Person)-[:ACTED_IN]->(a:Movie)
+WHERE a.released > 2005
+RETURN a.title, collect(b.name)
+
+# 3. Encontre pares de nós com mais do que uma relação entre si.
+MATCH (a)-[b]->(c)
+WITH a,c, count(b) as numRel
+WHERE numRel > 1
+RETURN a, c
+
+# 4. Encontre todos os pares de pessoas que fizeram revisões do mesmo filme. Apresente os seus nomes e título de cada filme.
+MATCH (p1:Person)-[:REVIEWED]->(m:Movie)<-[:REVIEWED]-(p2:Person)
+WHERE p1 < p2
+RETURN p1.name, p2.name, m.title
+
+# 5. Encontre todos os pares de atores que atuaram em vários filmes juntos.
+MATCH (p1:Person)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(p2:Person)
+WHERE p1 < p2
+WITH p1, p2, count(m) AS numMovies
+WHERE numMovies > 1
+RETURN p1.name, p2.name, numMovies
+
+# 6. Determine a idade média do elenco do filme "Apollo 13" no ano do lançamento do filme.
+MATCH (p1:Person)-[:ACTED_IN]->(apollo:Movie {title: "Apollo 13"})
+RETURN AVG(apollo.released - p1.born) AS Idade_Media
+
+# 7. Encontre os 10 filmes com o elenco mais velho no momento do lançamento do filme. Apresente o filme e a idade média arredondada a 2 casas decimais, por ordem decrescente.
+MATCH (p1:Person)-[:ACTED_IN]->(m:Movie)
+WITH m, AVG(m.released - p1.born) AS Idade_Media
+ORDER BY Idade_Media DESC
+RETURN m.title, ROUND(Idade_Media * 100) / 100 AS IdadeMed
+LIMIT 10
+
+# 8. Apresente o subgrafo ACTED_IN do filme com o elenco mais novo, no momento do lançamento do filme.
+MATCH (p1:Person)-[:ACTED_IN]->(m:Movie)
+WITH m, AVG(m.released - p1.born) AS Idade_Media
+ORDER BY Idade_Media ASC
+LIMIT 1
+WITH collect(m) AS filmesElencoMaisNovo
+UNWIND filmesElencoMaisNovo AS filmeElencoMaisNovo
+MATCH path = (p:Person)-[:ACTED_IN]->(filmeElencoMaisNovo)
+RETURN path
+
+# 9. Qual é o caminho mais curto (usando qualquer tipo de relação) entre John Cusack e Demi Moore?
+MATCH p=shortestPath(
+(cusack:Person {name:"John Cusack"})-[*]-(moore:Person {name:"Demi Moore"}))
+RETURN p
+
+# 10. Qual a dimensão caminho mais curto (usando qualquer tipo de relação) entre Keanu Reeves e Tom Cruise?
+MATCH p=shortestPath((keanu:Person {name:"Keanu Reeves"})-[*]-(tom:Person {name:"Tom Cruise"}))
+RETURN length(p) AS DimensaoCaminho
+
+# 11. Quais são as dimensões do caminho mais curto entre pessoas com nome Jim e pessoas com nome Kevin?
+MATCH (jim:Person), (kevin:Person)
+WHERE jim.name CONTAINS 'Jim' AND kevin.name CONTAINS 'Kevin'
+WITH jim, kevin
+MATCH path = shortestPath((jim)-[*]-(kevin))
+RETURN jim.name, kevin.name, length(path) as DimensaoCaminho
+
+# 12. Que pessoas têm uma distância 2 para Jim Cash (a distância entre duas pessoas é o comprimento do caminho mais curto entre eles)?
+MATCH path = shortestPath((p1:Person)-[*..2]-(jim:Person {name: 'Jim Cash'}))
+WHERE p1 <> jim
+RETURN p1.name
+
+# 13. Qual é a maior distância de uma pessoa para Kevin Bacon?
+MATCH path = shortestPath((p1:Person)-[*]-(kevin:Person {name: 'Kevin Bacon'}))
+WHERE p1 <> kevin
+WITH p1, path, length(path) AS dimensao
+ORDER BY dimensao DESC
+RETURN p1.name, dimensao
+LIMIT 1
+
+# 14. Qual é a maior distância entre duas pessoas?
+MATCH path = shortestPath((p1:Person)-[*]-(p2:Person))
+WHERE p1 <> p2
+WITH p1, p2, path, length(path) AS dimensao
+ORDER BY dimensao DESC
+RETURN p1.name, p2.name, dimensao
+LIMIT 1
+
+# 15. Qual é a distribuição de distâncias em pares (isto é, para a distância 1, 2, 3, ..., quantos pares de pessoas têm essa distância um do outro)?
+MATCH path = shortestPath((p1:Person)-[*]-(p2:Person))
+WHERE p1 <> p2
+WITH p1, p2, length(path) as distancia
+RETURN distancia, count(*) as pares
+ORDER BY distancia
+
+# 16. Indique as 10 pessoas com menor distância média em que o caminho entre elas são relações do tipo ACTED_IN.
+MATCH path = shortestPath((p1:Person)-[:ACTED_IN*]-(p2:Person))
+WHERE p1 <> p2
+UNWIND nodes(path) AS all_nodes
+WITH p1, path, COUNT(all_nodes) AS num_nodes
+RETURN p1.name, AVG(num_nodes) as distanciaMedia
+ORDER BY distanciaMedia ASC
+LIMIT 10
+
+# 17. Apresente os atores que tiveram pelo menos uma role para personagens com o prefixo 'Dr.'. O resultado deve ser uma lista com o par “Ator, Lista das roles”.
+MATCH (p1:Person)-[r:ACTED_IN]->(m:Movie)
+WHERE ANY(role IN r.roles WHERE role CONTAINS 'Dr.')
+RETURN p1.name AS Ator, r.roles AS ListaRoles
+
+# 18.
+
+# 19.
+
+# 20.
