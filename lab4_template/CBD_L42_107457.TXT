@@ -67,6 +67,8 @@ RETURN jim.name, kevin.name, length(path) as DimensaoCaminho
 # 12. Que pessoas têm uma distância 2 para Jim Cash (a distância entre duas pessoas é o comprimento do caminho mais curto entre eles)?
 MATCH path = shortestPath((p1:Person)-[*..2]-(jim:Person {name: 'Jim Cash'}))
 WHERE p1 <> jim
+WITH p1, length(path) AS dimensao
+WHERE dimensao = 2 
 RETURN p1.name
 
 # 13. Qual é a maior distância de uma pessoa para Kevin Bacon?
@@ -103,11 +105,24 @@ LIMIT 10
 
 # 17. Apresente os atores que tiveram pelo menos uma role para personagens com o prefixo 'Dr.'. O resultado deve ser uma lista com o par “Ator, Lista das roles”.
 MATCH (p1:Person)-[r:ACTED_IN]->(m:Movie)
-WHERE ANY(role IN r.roles WHERE role CONTAINS 'Dr.')
-RETURN p1.name AS Ator, r.roles AS ListaRoles
+WITH p1, [role IN r.roles WHERE role STARTS WITH 'Dr.'] AS ListaRoles
+WHERE ListaRoles <> []
+RETURN p1.name, ListaRoles
 
-# 18.
+# 18. Quantas atores no mesmo filme nasceram no mesmo ano, por ordem descendente.
+MATCH (p1:Person)-[:ACTED_IN]->(m:Movie)
+RETURN m.title AS MovieTitle, p1.born, COUNT(p1.born) AS Num
+ORDER BY Num DESC
 
-# 19.
+# 19. Encontra todos os pares de filmes que foram lançados em anos consecutivos
+MATCH (m1:Movie)
+MATCH (m2:Movie)
+WHERE m1 <> m2 AND m1.released - m2.released = 1
+RETURN m1.title AS Filme1, m1.released AS Ano1, m2.title AS Filme2, m2.released AS Ano2;
 
-# 20.
+# 20. Encontra todos os filmes cujos títulos têm prefixos idênticos, ou seja, podem ser derivados ou relacionados entre si.
+MATCH (m1:Movie)
+WITH m1, m1.title AS Title
+MATCH (m2:Movie)
+WHERE m2.title STARTS WITH Title AND m1 <> m2
+RETURN m1.title AS Filme, COLLECT(m2.title) AS FilmesDerivados;

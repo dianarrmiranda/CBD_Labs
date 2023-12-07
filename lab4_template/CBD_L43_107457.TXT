@@ -1,28 +1,48 @@
 // NMEC: 107457
 
 # 0. Carregue o conteudo do ficheiro `/resouces/git_selection.csv`.
-LOAD CSV ...
-
-LOAD CSV WITH HEADERS
-FROM './resouces/git_selection.csv'
-AS line
-CREATE (gitSel:GitSelection {num:line.num, real_name: line.real_name, project_name: line.project_name, role_on_project: line.role_on_project, organization: line.organization})
-
+LOAD CSV WITH HEADERS FROM 'file:///resources/git_selection.csv' AS row
+MERGE (p:Person {svn_id: row.svn_id, name: row.real_name})
+MERGE (p)-[o:BELONG_TO]->(org)
+MERGE (pr:Project {name: row.project_name})
+MERGE (p)-[r:WORKED_ON {role_on_project:row.role_on_project}]->(pr)
 
 # 1. Liste a informação de cada utilizador.
+MATCH (n:Person)
+RETURN n
 
 # 2. Liste o nome de cada utilizador.
+MATCH (n:Person)
+RETURN DISTINCT n.name 
 
 # 3. Liste a informação de cada projeto, no qual tenha participado pelo menos um utilizador.
+MATCH (n:Person)-[:WORKED_ON]->(pj:Project)
+WITH n, pj, Count(*) AS NumPersons
+WHERE NumPersons > 0
+RETURN DISTINCT pj
 
 # 4. Liste os utilizadores e total de projetos em que cada um colabora.
+MATCH (n:Person)-[:WORKED_ON]->(pj:Project)
+RETURN n, COUNT(*) AS NumProjects 
 
 # 5. Liste os utilizadores e do total de projetos em que cada colabora ordenados por ordem decrescente do total.
+MATCH (n:Person)-[:WORKED_ON]->(pj:Project)
+RETURN n, COUNT(*) AS NumProjects 
+ORDER BY NumProjects DESC
 
 # 6. Liste projetos e total de membros em cada projeto.
+MATCH (n:Person)-[:WORKED_ON]->(pj:Project)
+RETURN pj, Count(*) AS Membros
 
 # 7. Liste projetos e total de membros com a role "Committer" em cada projeto.
+MATCH (n:Person)-[r:WORKED_ON]->(pj:Project)
+WHERE r.role_on_project = 'Committer'
+RETURN pj, Count(*) AS Membros
 
 # 8. Liste todos os utilizadores que participaram nos mesmo projetos do que o utilizador "atm" (id). Mostre os atributos: nome de "atm", nome utilizador 2, nome do projeto.
+MATCH(n:Person {svn_id: 'atm'})-[:WORKED_ON]->(pr:Project)<-[:WORKED_ON]-(n2:Person)
+RETURN n.name AS atm, COLLECT(n2.name) AS user2, pr.name AS Project
 
 # 9. Liste todos os utilizadores que participaram com a role "Committer" em projetos em que o utilizador "atm" (id1) participou com a role "PMC".
+MATCH(p:Person)-[r:WORKED_ON {role_on_project: 'Committer'}]->(pr:Project)<-[r2:WORKED_ON {role_on_project: 'PMC'}]-(atm:Person {svn_id: 'atm'}) 
+RETURN p
