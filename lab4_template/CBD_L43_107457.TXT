@@ -3,6 +3,7 @@
 # 0. Carregue o conteudo do ficheiro `/resouces/git_selection.csv`.
 LOAD CSV WITH HEADERS FROM 'file:///resources/git_selection.csv' AS row
 MERGE (p:Person {svn_id: row.svn_id, name: row.real_name})
+MERGE (org:Organization {name: row.organization})
 MERGE (p)-[o:BELONG_TO]->(org)
 MERGE (pr:Project {name: row.project_name})
 MERGE (p)-[r:WORKED_ON {role_on_project:row.role_on_project}]->(pr)
