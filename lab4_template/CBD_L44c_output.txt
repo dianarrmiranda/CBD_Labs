@@ -1,4 +1,4 @@
-1 - Géneros por plataforma:
+1 - Listar os géneros por plataforma.
 |------------|---------------------------------------------------------------------------------------------------------------------|
 | Plataforma | Géneros                                                                                                             |
 |------------|---------------------------------------------------------------------------------------------------------------------|
@@ -34,8 +34,8 @@
 | GG         | [Platform]                                                                                                          |
 | PCFX       | [Role-Playing]                                                                                                      |
 
-2- Média de vendas totais por ano
-|------------|---------------------------------------------------------------------------------------------------------------------|
+2- Qual a média de vendas totais por ano?
+|------------|------------------------------------------|
 | Ano        | Média de vendas totais (em milhões)      |
 |------------|------------------------------------------|
 | 1989       | 8.641                                    |
@@ -79,3 +79,228 @@
 | 2016       | 0.412                                    |
 | 2017       | 0.033                                    |
 
+3- Qual a maior distância entre 2 plataformas?
+|-----------------|-----------------|-----------------|
+| Plataforma 1    | Plataforma 2    | Distância       |
+|-----------------|-----------------|-----------------|
+| 2600            | WS              | 6               |
+
+4- Qual o top 5 dos jogos mais vendidos?
+|---------------------------|--------------------------------|
+| Jogo                      | Total de Vendas (em mihões)    |
+|---------------------------|--------------------------------|
+| Wii Sports                | 165.48                         |
+| Super Mario Bros.         | 80.48                          |
+| Mario Kart Wii            | 71.65                          |
+| Wii Sports Resort         | 66.0                           |
+| Pokemon Red/Pokemon Blue  | 62.75                          |
+
+5- Listar todos os jogos que foram publicados pela mesma organização e no mesmo ano que o jogo The Sims.
+Jogo: The Sims
+Organização: Electronic Arts
+Jogos do mesmo ano e da mesma organização: 
+      -> Looney Tunes: Back in Action
+      -> Mace Griffin: Bounty Hunter
+      -> NHL 2004
+      -> NASCAR Thunder 2004
+      -> Need for Speed Underground
+      -> NBA Live 2004
+      -> Tiger Woods PGA Tour 2004
+      -> MVP Baseball 2003
+      -> Harry Potter and the Sorcerer's Stone
+      -> NCAA Football 2004
+      -> Harry Potter: Quidditch World Cup
+      -> Final Fantasy X-2
+      -> Bionicle
+      -> Spawn: Armageddon
+      -> Aliens versus Predator: Extinction
+      -> FIFA Soccer 2004
+      -> SSX 3
+      -> The Lord of the Rings: The Return of the King
+      -> SimCity 4
+      -> Freedom Fighters
+      -> Medal of Honor: Rising Sun
+      -> The Sims: Bustin' Out
+      -> Drome Racers
+      -> SimCity 4: Deluxe Edition
+      -> F1 Career Challenge
+      -> NCAA March Madness 2004
+      -> NBA Street Vol. 2
+      -> Def Jam Vendetta
+      -> Medal of Honor: Infiltrator
+      -> Command & Conquer Collection
+      -> The Sims
+      -> James Bond 007: Everything or Nothing
+      -> The Sims: Makin' Magic
+      -> James Bond 007: Nightfire
+      -> The Sims: Superstar
+      -> Rugby 2004
+      -> Madden NFL 2004
+      -> FIFA Soccer World Championship
+      -> Knockout Kings 2001
+      -> The Sims: Livin Large
+      -> NASCAR 2001
+      -> Mobil 1 Rally Championship
+      -> Madden NFL 2001
+      -> FIFA 2001 Major League Soccer
+      -> Command & Conquer: Red Alert 2
+      -> NBA Live 2001
+      -> NASCAR Rumble
+      -> Triple Play 2001
+      -> 007 Racing
+      -> NHL 2001
+      -> Theme Park Roller Coaster
+      -> NCAA Football 2001
+      -> CyberTiger
+      -> 007: The World is not Enough
+      -> FIFA 2001: Major League Soccer
+      -> SSX
+      -> Driving Emotion Type-S
+      -> Kessen
+      -> F1 Championship Season 2000
+      -> F1 2000
+      -> Swing Away Golf
+      -> Medal of Honor: Underground
+
+6 - Listar o número de jogos por plataforma (ordem decrescente)
+|-----------------|---------------------------|
+| Plataforma      | Número de Jogos           |
+|-----------------|---------------------------|
+| DS              | 2163                      |
+| PS2             | 2161                      |
+| PS3             | 1327                      |
+| Wii             | 1324                      |
+| X360            | 1264                      |
+| PSP             | 1213                      |
+| PS              | 1196                      |
+| PC              | 959                       |
+| XB              | 824                       |
+| GBA             | 822                       |
+| GC              | 556                       |
+| 3DS             | 509                       |
+| PSV             | 413                       |
+| PS4             | 336                       |
+| N64             | 319                       |
+| SNES            | 239                       |
+| XOne            | 213                       |
+| SAT             | 173                       |
+| WiiU            | 143                       |
+| 2600            | 133                       |
+| NES             | 98                        |
+| GB              | 98                        |
+| DC              | 52                        |
+| GEN             | 27                        |
+| NG              | 12                        |
+| SCD             | 6                         |
+| WS              | 6                         |
+| 3DO             | 3                         |
+| TG16            | 2                         |
+| GG              | 1                         |
+| PCFX            | 1                         |
+
+7 - Listar os 10 jogos com maior número de jogos derivados por prefixo de Nome
+|------------------------------------------|---------------------------|
+| Jogo                                     | Número de Jogos Derivados |
+|------------------------------------------|---------------------------|
+| D                                        | 375                       |
+| Mega Man                                 | 44                        |
+| Final Fantasy                            | 43                        |
+| Gun                                      | 38                        |
+| The Sims                                 | 38                        |
+| Gun                                      | 38                        |
+| Gun                                      | 36                        |
+| Dragon Ball Z                            | 33                        |
+| NBA                                      | 33                        |
+| SingStar                                 | 31                        |
+
+8 - Listar por ano os jogos e a sua plataforma do género Puzzle lançados depois de 2013
+|------------|---------------------------------------------------------------------------------------------------------------------|
+| Ano        | Jogos e Plataformas                                                                                                 |
+|------------|---------------------------------------------------------------------------------------------------------------------|
+| 2014       |
+|            | {platformName=WiiU, gameName=Captain Toad: Treasure Tracker}                                                        |
+|            | {platformName=3DS, gameName=Puyo Puyo Tetris}                                                                       |
+|            | {platformName=3DS, gameName=Cut the Rope}                                                                           |
+|            | {platformName=PSV, gameName=Tetris Ultimate}                                                                        |
+|            | {platformName=3DS, gameName=Legends of Oz: Dorothy's Return}                                                        |
+|            | {platformName=WiiU, gameName=Puyo Puyo Tetris}                                                                      |
+|            | {platformName=PSV, gameName=Puyo Puyo Tetris}                                                                       |
+|            | {platformName=PS3, gameName=Puyo Puyo Tetris}                                                                       |
+| 2015       |
+|            | {platformName=3DS, gameName=Mario vs. Donkey Kong: Tipping Stars}                                                   |
+|            | {platformName=PS4, gameName=The Talos Principle}                                                                    |
+|            | {platformName=3DS, gameName=Paddington: Adventures in London}                                                       |
+|            | {platformName=WiiU, gameName=Mario vs. Donkey Kong: Tipping Stars}                                                  |
+|            | {platformName=3DS, gameName=Puzzle & Dragons Z + Super Mario Bros. Edition}                                         |
+|            | {platformName=3DS, gameName=Picross 3D 2}                                                                           |
+
+9- Listar o total de vendas por local de forma decrescente com base nas vendas globais
+|----------------------------------------------------|    Vendas em Milhões                                                                                                              |
+|----------------------------------------------------|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
+| Jogo                                               | NA                             | EU                             | JP                             | Outros                         |
+|----------------------------------------------------|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
+| Wii Sports                                         | 41.49                          | 29.02                          | 3.77                           | 0                              |
+| Super Mario Bros.                                  | 32.48                          | 4.88                           | 6.96                           | 0                              |
+| Mario Kart Wii                                     | 15.85                          | 12.88                          | 3.79                           | 0                              |
+| Wii Sports Resort                                  | 15.75                          | 11.01                          | 3.28                           | 0                              |
+| Pokemon Red/Pokemon Blue                           | 11.27                          | 8.89                           | 10.22                          | 0                              |
+| Tetris                                             | 26.169999999999998             | 2.9499999999999997             | 6.029999999999999              | 0                              |
+| New Super Mario Bros.                              | 11.38                          | 9.23                           | 6.5                            | 0                              |
+| Wii Play                                           | 14.03                          | 9.2                            | 2.93                           | 0                              |
+| New Super Mario Bros. Wii                          | 14.59                          | 7.06                           | 4.7                            | 0                              |
+| Duck Hunt                                          | 26.93                          | 0.63                           | 0.28                           | 0                              |
+| Nintendogs                                         | 9.07                           | 11.0                           | 1.93                           | 0                              |
+| Mario Kart DS                                      | 9.81                           | 7.57                           | 4.13                           | 0                              |
+| Pokemon Gold/Pokemon Silver                        | 9.0                            | 6.18                           | 7.2                            | 0                              |
+| Wii Fit                                            | 8.94                           | 8.03                           | 3.6                            | 0                              |
+| Wii Fit Plus                                       | 9.09                           | 8.59                           | 2.53                           | 0                              |
+| Kinect Adventures!                                 | 14.97                          | 4.94                           | 0.24                           | 0                              |
+| Grand Theft Auto V                                 | 23.46                          | 23.04                          | 1.3900000000000001             | 0                              |
+| Grand Theft Auto: San Andreas                      | 10.77                          | 1.9600000000000002             | 0.41                           | 0                              |
+| Super Mario World                                  | 15.989999999999998             | 4.86                           | 4.49                           | 0                              |
+| Brain Age: Train Your Brain in Minutes a Day       | 4.75                           | 9.26                           | 4.16                           | 0                              |
+
+10- Listar o número de plataformas e em que plataformas os jogos foram lançados
+|----------------------------------------------------|---------------------------|----------------------------------------------------|
+| Jogo                                               | Número de Plataformas     | Plataformas                                        |
+|----------------------------------------------------|---------------------------|----------------------------------------------------|
+| Need for Speed: Most Wanted                        | 10                        | [DS, X360, PS3, PS2, GBA, XB, PC, GC, WiiU, PSV]   |
+| LEGO Marvel Super Heroes                           | 9                         | [DS, X360, PS3, 3DS, PS4, PC, XOne, WiiU, PSV]     |
+| FIFA 14                                            | 9                         | [Wii, X360, PS3, 3DS, PS4, PC, PSP, XOne, PSV]     |
+| Ratatouille                                        | 9                         | [Wii, DS, X360, PS3, PS2, GBA, PC, PSP, GC]        |
+| Madden NFL 07                                      | 9                         | [Wii, DS, X360, PS3, PS2, GBA, XB, PSP, GC]        |
+| FIFA 15                                            | 8                         | [Wii, X360, PS3, 3DS, PS4, PC, XOne, PSV]          |
+| Cars                                               | 8                         | [Wii, DS, X360, PS2, GBA, XB, PSP, GC]             |
+| Angry Birds Star Wars                              | 8                         | [Wii, X360, PS3, 3DS, PS4, XOne, WiiU, PSV]        |
+| Terraria                                           | 8                         | [X360, PS3, 3DS, PS4, PC, XOne, WiiU, PSV]         |
+| LEGO Star Wars II: The Original Trilogy            | 8                         | [DS, X360, PS2, GBA, XB, PC, PSP, GC]              |
+| The LEGO Movie Videogame                           | 8                         | [X360, PS3, 3DS, PS4, PC, XOne, WiiU, PSV]         |
+| FIFA Soccer 13                                     | 8                         | [Wii, X360, PS3, 3DS, PC, PSP, WiiU, PSV]          |
+| LEGO Jurassic World                                | 8                         | [X360, PS3, 3DS, PS4, PC, XOne, WiiU, PSV]         |
+| LEGO The Hobbit                                    | 8                         | [X360, PS3, 3DS, PS4, PC, XOne, WiiU, PSV]         |
+| LEGO Harry Potter: Years 5-7                       | 8                         | [Wii, DS, X360, PS3, 3DS, PC, PSP, PSV]            |
+| Lego Batman 3: Beyond Gotham                       | 8                         | [X360, PS3, 3DS, PS4, PC, XOne, WiiU, PSV]         |
+| Madden NFL 08                                      | 8                         | [Wii, DS, X360, PS3, PS2, XB, PSP, GC]             |
+| Monopoly                                           | 8                         | [Wii, DS, X360, PS3, PS2, N64, PS, PC]             |
+| Tomb Raider: Legend                                | 7                         | [DS, X360, PS2, XB, PC, PSP, GC]                   |
+| FIFA Soccer 11                                     | 7                         | [Wii, DS, X360, PS3, PS2, PC, PSP]                 |
+| FIFA Soccer 08                                     | 7                         | [Wii, DS, X360, PS3, PS2, PC, PSP]                 |
+| LEGO Indiana Jones: The Original Adventures        | 7                         | [Wii, DS, X360, PS3, PS2, PC, PSP]                 |
+| NBA Jam                                            | 7                         | [Wii, X360, PS3, PS2, SNES, XB, GEN]               |
+| Major League Baseball 2K11                         | 7                         | [Wii, DS, X360, PS3, PS2, PC, PSP]                 |
+| Madden NFL 06                                      | 7                         | [DS, X360, PS2, GBA, XB, PSP, GC]                  |
+| Spider-Man 3                                       | 7                         | [Wii, DS, X360, PS3, PS2, PC, PSP]                 |
+| Skylanders: SuperChargers                          | 7                         | [Wii, X360, PS3, 3DS, PS4, XOne, WiiU]             |
+| LEGO Pirates of the Caribbean: The Video Game      | 7                         | [Wii, DS, X360, PS3, 3DS, PC, PSP]                 |
+| LEGO The Lord of the Rings                         | 7                         | [Wii, DS, X360, PS3, 3DS, PC, PSV]                 |
+| Harry Potter and the Sorcerer's Stone              | 7                         | [GB, PS2, GBA, PS, XB, PC, GC]                     |
+| Pro Evolution Soccer 2012                          | 7                         | [Wii, X360, PS3, PS2, 3DS, PC, PSP]                |
+| LEGO Batman: The Videogame                         | 7                         | [Wii, DS, X360, PS3, PS2, PC, PSP]                 |
+| Wall-E                                             | 7                         | [Wii, DS, X360, PS3, PS2, PC, PSP]                 |
+| Skylanders SWAP Force                              | 7                         | [Wii, X360, PS3, 3DS, PS4, XOne, WiiU]             |
+| Harry Potter and the Half-Blood Prince             | 7                         | [Wii, DS, X360, PS3, PS2, PC, PSP]                 |
+| Star Wars The Clone Wars: Republic Heroes          | 7                         | [Wii, DS, X360, PS3, PS2, PC, PSP]                 |
+| Need for Speed Carbon                              | 7                         | [Wii, X360, PS3, PS2, XB, PC, GC]                  |
+| Skylanders: Trap Team                              | 7                         | [Wii, X360, PS3, 3DS, PS4, XOne, WiiU]             |
+| Need For Speed: Undercover                         | 7                         | [Wii, DS, X360, PS3, PS2, PC, PSP]                 |
+| FIFA Soccer 10                                     | 7                         | [Wii, DS, X360, PS3, PS2, PC, PSP]                 |
